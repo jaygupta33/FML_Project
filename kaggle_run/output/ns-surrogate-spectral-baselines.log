@@ -1,0 +1,115 @@
+[{"stream_name":"stderr","time":6.5496362,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.549670601,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.549674559,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.549677015,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":7.212233009,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.212259813,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.212264116,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.212276404,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":8.422768751,"data":"[INFO] installing: neuraloperator\n"}
+,{"stream_name":"stdout","time":18.902959002,"data":"[INFO] 3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]\n"}
+,{"stream_name":"stdout","time":18.902988062,"data":"[INFO] torch version: 2.11.0+cu128\n"}
+,{"stream_name":"stdout","time":18.90299293,"data":"[INFO] cuda available: True\n"}
+,{"stream_name":"stdout","time":18.902996573,"data":"[INFO] GPU Name: Tesla T4\n"}
+,{"stream_name":"stdout","time":19.059466196,"data":"[INFO] dataset not found under /kaggle/input; downloading from Zenodo to /kaggle/working/data\n"}
+,{"stream_name":"stdout","time":137.987947899,"data":"[INFO] downloaded 0.15 / 1.45 GB\n"}
+,{"stream_name":"stdout","time":184.08546834,"data":"[INFO] downloaded 0.29 / 1.45 GB\n"}
+,{"stream_name":"stdout","time":228.518719398,"data":"[INFO] downloaded 0.44 / 1.45 GB\n"}
+,{"stream_name":"stdout","time":273.840067528,"data":"[INFO] downloaded 0.58 / 1.45 GB\n"}
+,{"stream_name":"stdout","time":318.413121547,"data":"[INFO] downloaded 0.73 / 1.45 GB\n"}
+,{"stream_name":"stdout","time":364.008714369,"data":"[INFO] downloaded 0.87 / 1.45 GB\n"}
+,{"stream_name":"stdout","time":406.381622928,"data":"[INFO] downloaded 1.02 / 1.45 GB\n"}
+,{"stream_name":"stdout","time":423.138096462,"data":"[INFO] downloaded 1.16 / 1.45 GB\n"}
+,{"stream_name":"stdout","time":429.878926027,"data":"[INFO] downloaded 1.31 / 1.45 GB\n"}
+,{"stream_name":"stdout","time":435.724828395,"data":"[INFO] downloaded 1.45 / 1.45 GB\n"}
+,{"stream_name":"stdout","time":454.626949385,"data":"[INFO] loading data from: Zenodo record 12825163 (/kaggle/working/data)\n"}
+,{"stream_name":"stdout","time":455.968508186,"data":"[INFO] train x: shape (10000, 128, 128)  min -0.759  max 0.817  mean 0.000  std 0.154\n"}
+,{"stream_name":"stdout","time":456.204267921,"data":"[INFO] train y: shape (10000, 128, 128)  min -3.489  max 3.928  mean 0.000  std 0.708\n"}
+,{"stream_name":"stdout","time":456.204302614,"data":"[INFO] test x: shape (2000, 128, 128)  min -0.762  max 0.750  mean -0.000  std 0.154\n"}
+,{"stream_name":"stdout","time":456.204308241,"data":"[INFO] test y: shape (2000, 128, 128)  min -3.631  max 3.627  mean -0.000  std 0.706\n"}
+,{"stream_name":"stdout","time":456.26875994,"data":"[INFO] data check passed: shapes and y std match the team's dataset\n"}
+,{"stream_name":"stdout","time":460.154407067,"data":"[INFO] Dataset split successful.\n"}
+,{"stream_name":"stdout","time":460.154433478,"data":"[INFO] Dataset split sizes: Train 8000, Test: 2000, Validation: 2000.\n"}
+,{"stream_name":"stdout","time":462.47192148,"data":"[INFO] Data Normalization Successful.\n"}
+,{"stream_name":"stdout","time":462.61599627,"data":"[INFO] Shapes [Before]\n"}
+,{"stream_name":"stdout","time":462.616022785,"data":"\n"}
+,{"stream_name":"stdout","time":462.61983069,"data":"[INFO] Shapes [After]\n"}
+,{"stream_name":"stdout","time":462.619852802,"data":"\n"}
+,{"stream_name":"stdout","time":462.802891699,"data":"[INFO] X: torch.Size([32, 1, 128, 128]), Y:torch.Size([32, 1, 128, 128])\n"}
+,{"stream_name":"stdout","time":467.907091033,"data":"[INFO] SpectralLoss defined, e.g. loss names: MSE + H1-spectral (λ=0.5) | MSE + ring-spectral (λ=0.5)\n"}
+,{"stream_name":"stdout","time":468.121662891,"data":"[INFO] results -\u003e /kaggle/working/results, figures -\u003e /kaggle/working/figures\n"}
+,{"stream_name":"stdout","time":2300.261433186,"data":"[SAVED] /kaggle/working/results/history_FNO.csv\n"}
+,{"stream_name":"stdout","time":3108.948000789,"data":"[SAVED] /kaggle/working/results/history_CNN.csv\n"}
+,{"stream_name":"stdout","time":4725.885062606,"data":"[SAVED] /kaggle/working/results/history_UNet.csv\n"}
+,{"stream_name":"stdout","time":4730.492596728,"data":"[INFO] Stored control summary; spectral runs to train: ['UNet+Spectral k2', 'UNet+Spectral ring']\n"}
+,{"stream_name":"stdout","time":6397.049817952,"data":"[INFO] UNet+Spectral k2 (MSE + H1-spectral (λ=0.5)): best epoch 20 of 20\n"}
+,{"stream_name":"stdout","time":6397.104304921,"data":"[SAVED] /kaggle/working/results/history_UNet_Spectral_k2.csv\n"}
+,{"stream_name":"stdout","time":8056.176450681,"data":"[INFO] UNet+Spectral ring (MSE + ring-spectral (λ=0.1)): best epoch 20 of 20\n"}
+,{"stream_name":"stdout","time":8056.185403496,"data":"[SAVED] /kaggle/working/results/history_UNet_Spectral_ring.csv\n"}
+,{"stream_name":"stdout","time":8056.296604218,"data":"[INFO] U-Net + MSE (control) vs U-Net + spectral loss. best_val_loss / test_loss use each run's own loss, so compare test_mse_norm and test_rel_L2.\n"}
+,{"stream_name":"stdout","time":8056.299919574,"data":"[SAVED] /kaggle/working/results/summary_all.csv\n"}
+,{"stream_name":"stdout","time":8056.515454821,"data":"[INFO] Runs use different losses; plotting validation MSE (standardized) for every run, without training curves.\n"}
+,{"stream_name":"stdout","time":8057.165414072,"data":"[SAVED] /kaggle/working/figures/training_curves.png\n"}
+,{"stream_name":"stdout","time":8081.820942873,"data":"[SAVED] /kaggle/working/results/metrics_test.csv\n"}
+,{"stream_name":"stdout","time":8083.170126277,"data":"[SAVED] /kaggle/working/figures/samples_0.png\n"}
+,{"stream_name":"stdout","time":8085.095374761,"data":"[SAVED] /kaggle/working/figures/samples_1.png\n"}
+,{"stream_name":"stdout","time":8086.898051862,"data":"[SAVED] /kaggle/working/figures/error_hist.png\n"}
+,{"stream_name":"stdout","time":8087.08497699,"data":"[INFO] Worst FNO test sample: #306\n"}
+,{"stream_name":"stdout","time":8088.273243532,"data":"[SAVED] /kaggle/working/figures/samples_306.png\n"}
+,{"stream_name":"stdout","time":8093.976438371,"data":"[INFO] Radial spectra: 64 bins (k = 0 ... 63) for 4 models\n"}
+,{"stream_name":"stdout","time":8094.278857066,"data":"[SAVED] /kaggle/working/figures/error_spectrum.png\n"}
+,{"stream_name":"stdout","time":8094.318258846,"data":"[SAVED] /kaggle/working/results/band_errors.csv\n"}
+,{"stream_name":"stdout","time":8095.465462484,"data":"[SAVED] /kaggle/working/figures/energy_spectrum.png\n"}
+,{"stream_name":"stdout","time":10475.875010557,"data":"[SAVED] /kaggle/working/results/grad_model_summary_all_tensors.csv\n"}
+,{"stream_name":"stdout","time":10475.875086207,"data":"[SAVED] /kaggle/working/results/grad_per_layer_all_tensors.csv\n"}
+,{"stream_name":"stdout","time":10476.854067497,"data":"[SAVED] /kaggle/working/figures/grad_fig1.png\n"}
+,{"stream_name":"stdout","time":10477.593395579,"data":"[SAVED] /kaggle/working/figures/grad_fig2.png\n"}
+,{"stream_name":"stdout","time":10478.724125814,"data":"[SAVED] /kaggle/working/figures/grad_fig3.png\n"}
+,{"stream_name":"stdout","time":10479.435892275,"data":"[SAVED] /kaggle/working/results/grad_model_summary.csv\n"}
+,{"stream_name":"stdout","time":10479.435919256,"data":"[SAVED] /kaggle/working/results/grad_per_layer.csv\n"}
+,{"stream_name":"stdout","time":10479.705396637,"data":"[INFO] removed downloaded data /kaggle/working/data\n"}
+,{"stream_name":"stdout","time":10479.705423699,"data":"[INFO] 22 files saved under /kaggle/working:\n"}
+,{"stream_name":"stdout","time":10479.705427895,"data":"    figures/energy_spectrum.png\n"}
+,{"stream_name":"stdout","time":10479.705431343,"data":"    figures/error_hist.png\n"}
+,{"stream_name":"stdout","time":10479.705434552,"data":"    figures/error_spectrum.png\n"}
+,{"stream_name":"stdout","time":10479.705437837,"data":"    figures/grad_fig1.png\n"}
+,{"stream_name":"stdout","time":10479.705441124,"data":"    figures/grad_fig2.png\n"}
+,{"stream_name":"stdout","time":10479.705444341,"data":"    figures/grad_fig3.png\n"}
+,{"stream_name":"stdout","time":10479.70544751,"data":"    figures/samples_0.png\n"}
+,{"stream_name":"stdout","time":10479.705451259,"data":"    figures/samples_1.png\n"}
+,{"stream_name":"stdout","time":10479.705455275,"data":"    figures/samples_306.png\n"}
+,{"stream_name":"stdout","time":10479.705459066,"data":"    figures/training_curves.png\n"}
+,{"stream_name":"stdout","time":10479.705463035,"data":"    results/band_errors.csv\n"}
+,{"stream_name":"stdout","time":10479.705466857,"data":"    results/grad_model_summary.csv\n"}
+,{"stream_name":"stdout","time":10479.705470184,"data":"    results/grad_model_summary_all_tensors.csv\n"}
+,{"stream_name":"stdout","time":10479.705473437,"data":"    results/grad_per_layer.csv\n"}
+,{"stream_name":"stdout","time":10479.705476773,"data":"    results/grad_per_layer_all_tensors.csv\n"}
+,{"stream_name":"stdout","time":10479.705480133,"data":"    results/history_CNN.csv\n"}
+,{"stream_name":"stdout","time":10479.705483762,"data":"    results/history_FNO.csv\n"}
+,{"stream_name":"stdout","time":10479.70548704,"data":"    results/history_UNet.csv\n"}
+,{"stream_name":"stdout","time":10479.705490363,"data":"    results/history_UNet_Spectral_k2.csv\n"}
+,{"stream_name":"stdout","time":10479.705493547,"data":"    results/history_UNet_Spectral_ring.csv\n"}
+,{"stream_name":"stdout","time":10479.7054968,"data":"    results/metrics_test.csv\n"}
+,{"stream_name":"stdout","time":10479.705499971,"data":"    results/summary_all.csv\n"}
+,{"stream_name":"stdout","time":10479.705503117,"data":"[DONE] all sections finished\n"}
+,{"stream_name":"stderr","time":10485.803426908,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":10485.803454379,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":10485.953100401,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":10485.953124343,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":10486.703249826,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":10487.044642831,"data":"[NbConvertApp] Writing 6604369 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":10489.479737927,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":10490.556717464,"data":"[NbConvertApp] Support files will be in __results___files/\n"}
+,{"stream_name":"stderr","time":10490.556762306,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":10490.557316333,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":10490.557547519,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":10490.558028262,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":10490.55853798,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":10490.558902273,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":10490.559440853,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":10490.559646606,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":10490.55985904,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":10490.560077939,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":10490.560291595,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":10490.560566943,"data":"[NbConvertApp] Writing 1731138 bytes to __results__.html\n"}
+]

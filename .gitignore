@@ -1,0 +1,9 @@
+# data and large source archives
+*.pt
+*.tgz
+*.zip
+data/
+# python / jupyter
+__pycache__/
+.ipynb_checkpoints/
+.venv/
