@@ -1,42 +1,92 @@
-[{"stream_name":"stderr","time":7.546429686,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
-,{"stream_name":"stderr","time":7.546477857,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
-,{"stream_name":"stderr","time":8.581727149,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
-,{"stream_name":"stderr","time":8.581775411,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
-,{"stream_name":"stderr","time":8.581782148,"data":"0.00s - to python to disable frozen modules.\n"}
-,{"stream_name":"stderr","time":8.581786792,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
-,{"stream_name":"stderr","time":9.218217381,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
-,{"stream_name":"stderr","time":9.218248276,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
-,{"stream_name":"stderr","time":9.218253386,"data":"0.00s - to python to disable frozen modules.\n"}
-,{"stream_name":"stderr","time":9.218257378,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
-,{"stream_name":"stderr","time":16.673465378,"data":"Traceback (most recent call last):\n"}
-,{"stream_name":"stderr","time":16.67417281,"data":"  File \"\u003cstring\u003e\", line 1, in \u003cmodule\u003e\n"}
-,{"stream_name":"stderr","time":16.674187019,"data":"    import sys;import papermill as pm;pm.execute_notebook(\"__notebook__.ipynb\",\"__notebook__.ipynb\",progress_bar=False,log_output=True,stdout_file=sys.stdout,stderr_file=sys.stderr,allow_errors=False,timeout=43200)\n"}
-,{"stream_name":"stderr","time":16.674194339,"data":"                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
-,{"stream_name":"stderr","time":16.674199601,"data":"  File \"/usr/local/lib/python3.13/dist-packages/papermill/execute.py\", line 131, in execute_notebook\n"}
-,{"stream_name":"stderr","time":16.674203992,"data":"    raise_for_execution_errors(nb, output_path)\n"}
-,{"stream_name":"stderr","time":16.674208115,"data":"    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
-,{"stream_name":"stderr","time":16.674211727,"data":"  File \"/usr/local/lib/python3.13/dist-packages/papermill/execute.py\", line 251, in raise_for_execution_errors\n"}
-,{"stream_name":"stderr","time":16.674215621,"data":"    raise error\n"}
-,{"stream_name":"stderr","time":16.674219121,"data":"papermill.exceptions.PapermillExecutionError: \n"}
-,{"stream_name":"stderr","time":16.674222803,"data":"---------------------------------------------------------------------------\n"}
-,{"stream_name":"stderr","time":16.674232284,"data":"Exception encountered at \"In [1]\":\n"}
-,{"stream_name":"stderr","time":16.674235213,"data":"---------------------------------------------------------------------------\n"}
-,{"stream_name":"stderr","time":16.674237633,"data":"StopIteration                             Traceback (most recent call last)\n"}
-,{"stream_name":"stderr","time":16.674240048,"data":"/tmp/ipykernel_23/2445939447.py in \u003ccell line: 0\u003e()\n"}
-,{"stream_name":"stderr","time":16.674242629,"data":"      5 code_dir = next((os.path.dirname(os.path.dirname(p)) for p in\n"}
-,{"stream_name":"stderr","time":16.674254695,"data":"      6                  glob.glob(\"/kaggle/input/**/nsbench/__init__.py\", recursive=True)),\n"}
-,{"stream_name":"stderr","time":16.674257489,"data":"----\u003e 7                 next(os.path.abspath(d) for d in (\".\", \"..\") if os.path.isdir(f\"{d}/nsbench\")))\n"}
-,{"stream_name":"stderr","time":16.674260341,"data":"      8 sys.path.insert(0, code_dir)\n"}
-,{"stream_name":"stderr","time":16.674262807,"data":"      9 import torch, numpy as np, pandas as pd\n"}
-,{"stream_name":"stderr","time":16.674265311,"data":"\n"}
-,{"stream_name":"stderr","time":16.674267781,"data":"StopIteration: \n"}
-,{"stream_name":"stderr","time":16.674270235,"data":"\n"}
-,{"stream_name":"stderr","time":18.968515095,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
-,{"stream_name":"stderr","time":18.968553232,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
-,{"stream_name":"stderr","time":19.132298351,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
-,{"stream_name":"stderr","time":19.132327166,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
-,{"stream_name":"stderr","time":19.933327254,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
-,{"stream_name":"stderr","time":20.009959935,"data":"[NbConvertApp] Writing 11229 bytes to __notebook__.ipynb\n"}
-,{"stream_name":"stderr","time":22.711887417,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
-,{"stream_name":"stderr","time":23.268529639,"data":"[NbConvertApp] Writing 305607 bytes to __results__.html\n"}
+[{"stream_name":"stderr","time":5.831270096,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":5.831319422,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":6.600537823,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.600565995,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.600570879,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.600574422,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":7.171465212,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.171494875,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.171500438,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.171504391,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":26.345877891,"data":"{'what': 'solver 24^2', 'grid': 24, 'dt': 0.05, 'steps': 100, 'precision': 'float32', 'batch': 1, 'sec_per_call': 0.07102538800000957, 'sec_per_sample': 0.07102538800000957, 'test_rel_L2_mean': 0.077740928281503, 'test_rel_L2_max': 0.11477818772253183}\n"}
+,{"stream_name":"stdout","time":26.617787905,"data":"{'what': 'solver 24^2', 'grid': 24, 'dt': 0.05, 'steps': 100, 'precision': 'float32', 'batch': 32, 'sec_per_call': 0.0752235159999941, 'sec_per_sample': 0.002350734874999816, 'test_rel_L2_mean': 0.077740928281503, 'test_rel_L2_max': 0.11477818772253183}\n"}
+,{"stream_name":"stdout","time":26.901420309,"data":"{'what': 'solver 24^2', 'grid': 24, 'dt': 0.05, 'steps': 100, 'precision': 'float32', 'batch': 256, 'sec_per_call': 0.07691749899998968, 'sec_per_sample': 0.00030045898046870967, 'test_rel_L2_mean': 0.077740928281503, 'test_rel_L2_max': 0.11477818772253183}\n"}
+,{"stream_name":"stdout","time":27.3144926,"data":"{'what': 'solver 32^2', 'grid': 32, 'dt': 0.05, 'steps': 100, 'precision': 'float32', 'batch': 1, 'sec_per_call': 0.07412550899999815, 'sec_per_sample': 0.07412550899999815, 'test_rel_L2_mean': 0.03258254466072312, 'test_rel_L2_max': 0.055985800462497105}\n"}
+,{"stream_name":"stdout","time":27.57330188,"data":"{'what': 'solver 32^2', 'grid': 32, 'dt': 0.05, 'steps': 100, 'precision': 'float32', 'batch': 32, 'sec_per_call': 0.07334202399999867, 'sec_per_sample': 0.0022919382499999585, 'test_rel_L2_mean': 0.03258254466072312, 'test_rel_L2_max': 0.055985800462497105}\n"}
+,{"stream_name":"stdout","time":27.842408055,"data":"{'what': 'solver 32^2', 'grid': 32, 'dt': 0.05, 'steps': 100, 'precision': 'float32', 'batch': 256, 'sec_per_call': 0.07594976100000395, 'sec_per_sample': 0.0002966787539062654, 'test_rel_L2_mean': 0.03258254466072312, 'test_rel_L2_max': 0.055985800462497105}\n"}
+,{"stream_name":"stdout","time":28.2748687,"data":"{'what': 'solver 48^2', 'grid': 48, 'dt': 0.05, 'steps': 100, 'precision': 'float32', 'batch': 1, 'sec_per_call': 0.0719112640000219, 'sec_per_sample': 0.0719112640000219, 'test_rel_L2_mean': 0.00914897142515679, 'test_rel_L2_max': 0.022464610313860222}\n"}
+,{"stream_name":"stdout","time":28.53923312,"data":"{'what': 'solver 48^2', 'grid': 48, 'dt': 0.05, 'steps': 100, 'precision': 'float32', 'batch': 32, 'sec_per_call': 0.07295528699998499, 'sec_per_sample': 0.002279852718749531, 'test_rel_L2_mean': 0.00914897142515679, 'test_rel_L2_max': 0.022464610313860222}\n"}
+,{"stream_name":"stdout","time":28.951343508,"data":"{'what': 'solver 48^2', 'grid': 48, 'dt': 0.05, 'steps': 100, 'precision': 'float32', 'batch': 256, 'sec_per_call': 0.11673641199999452, 'sec_per_sample': 0.0004560016093749786, 'test_rel_L2_mean': 0.00914897142515679, 'test_rel_L2_max': 0.022464610313860222}\n"}
+,{"stream_name":"stdout","time":29.793071851,"data":"{'what': 'solver 64^2', 'grid': 64, 'dt': 0.02, 'steps': 250, 'precision': 'float32', 'batch': 1, 'sec_per_call': 0.17934624299999768, 'sec_per_sample': 0.17934624299999768, 'test_rel_L2_mean': 0.002292376194686323, 'test_rel_L2_max': 0.008092844394041825}\n"}
+,{"stream_name":"stdout","time":30.389677357,"data":"{'what': 'solver 64^2', 'grid': 64, 'dt': 0.02, 'steps': 250, 'precision': 'float32', 'batch': 32, 'sec_per_call': 0.18340466100002573, 'sec_per_sample': 0.005731395656250804, 'test_rel_L2_mean': 0.002292376194686323, 'test_rel_L2_max': 0.008092844394041825}\n"}
+,{"stream_name":"stdout","time":32.471962912,"data":"{'what': 'solver 64^2', 'grid': 64, 'dt': 0.02, 'steps': 250, 'precision': 'float32', 'batch': 256, 'sec_per_call': 0.6482224220000035, 'sec_per_sample': 0.0025321188359375135, 'test_rel_L2_mean': 0.002292376194686323, 'test_rel_L2_max': 0.008092844394041825}\n"}
+,{"stream_name":"stdout","time":33.511083092,"data":"{'what': 'solver 96^2', 'grid': 96, 'dt': 0.02, 'steps': 250, 'precision': 'float32', 'batch': 1, 'sec_per_call': 0.18515374999998357, 'sec_per_sample': 0.18515374999998357, 'test_rel_L2_mean': 0.0003000903014111371, 'test_rel_L2_max': 0.0015009113034586514}\n"}
+,{"stream_name":"stdout","time":34.113138175,"data":"{'what': 'solver 96^2', 'grid': 96, 'dt': 0.02, 'steps': 250, 'precision': 'float32', 'batch': 32, 'sec_per_call': 0.18456882799998198, 'sec_per_sample': 0.005767775874999437, 'test_rel_L2_mean': 0.0003000903014111371, 'test_rel_L2_max': 0.0015009113034586514}\n"}
+,{"stream_name":"stdout","time":39.329755703000004,"data":"{'what': 'solver 96^2', 'grid': 96, 'dt': 0.02, 'steps': 250, 'precision': 'float32', 'batch': 256, 'sec_per_call': 1.6293442310000046, 'sec_per_sample': 0.006364625902343768, 'test_rel_L2_mean': 0.0003000903014111371, 'test_rel_L2_max': 0.0015009113034586514}\n"}
+,{"stream_name":"stdout","time":41.776341419,"data":"{'what': 'solver 128^2', 'grid': 128, 'dt': 0.01, 'steps': 500, 'precision': 'float32', 'batch': 1, 'sec_per_call': 0.3685167639999918, 'sec_per_sample': 0.3685167639999918, 'test_rel_L2_mean': 4.183747258703309e-05, 'test_rel_L2_max': 0.00020587411667431107}\n"}
+,{"stream_name":"stdout","time":43.317747538,"data":"{'what': 'solver 128^2', 'grid': 128, 'dt': 0.01, 'steps': 500, 'precision': 'float32', 'batch': 32, 'sec_per_call': 0.49568563799999765, 'sec_per_sample': 0.015490176187499927, 'test_rel_L2_mean': 4.183747258703309e-05, 'test_rel_L2_max': 0.00020587411667431107}\n"}
+,{"stream_name":"stdout","time":59.474984038,"data":"{'what': 'solver 128^2', 'grid': 128, 'dt': 0.01, 'steps': 500, 'precision': 'float32', 'batch': 256, 'sec_per_call': 5.20958365300001, 'sec_per_sample': 0.02034993614453129, 'test_rel_L2_mean': 4.183747258703309e-05, 'test_rel_L2_max': 0.00020587411667431107}\n"}
+,{"stream_name":"stdout","time":74.870752278,"data":"{'what': 'solver 256^2', 'grid': 256, 'dt': 0.004, 'steps': 1250, 'precision': 'float32', 'batch': 1, 'sec_per_call': 0.892523170000004, 'sec_per_sample': 0.892523170000004, 'test_rel_L2_mean': 3.1741170138256965e-05, 'test_rel_L2_max': 3.940956368847442e-05}\n"}
+,{"stream_name":"stdout","time":94.272552662,"data":"{'what': 'solver 256^2', 'grid': 256, 'dt': 0.004, 'steps': 1250, 'precision': 'float32', 'batch': 32, 'sec_per_call': 6.378274929000014, 'sec_per_sample': 0.19932109153125044, 'test_rel_L2_mean': 3.1741170138256965e-05, 'test_rel_L2_max': 3.940956368847442e-05}\n"}
+,{"stream_name":"stdout","time":244.15370908,"data":"{'what': 'solver 256^2', 'grid': 256, 'dt': 0.004, 'steps': 1250, 'precision': 'float32', 'batch': 256, 'sec_per_call': 49.31017119500001, 'sec_per_sample': 0.1926178562304688, 'test_rel_L2_mean': 3.1741170138256965e-05, 'test_rel_L2_max': 3.940956368847442e-05}\n"}
+,{"stream_name":"stdout","time":249.673665976,"data":"{'what': 'solver 128^2', 'grid': 128, 'dt': 0.01, 'steps': 500, 'precision': 'float64', 'batch': 1, 'sec_per_call': 0.34947263600003, 'sec_per_sample': 0.34947263600003, 'test_rel_L2_mean': 4.1765034946602026e-05, 'test_rel_L2_max': 0.0002056346275114745}\n"}
+,{"stream_name":"stdout","time":256.483335495,"data":"{'what': 'solver 128^2', 'grid': 128, 'dt': 0.01, 'steps': 500, 'precision': 'float64', 'batch': 32, 'sec_per_call': 2.1946423090000167, 'sec_per_sample': 0.06858257215625052, 'test_rel_L2_mean': 4.1765034946602026e-05, 'test_rel_L2_max': 0.0002056346275114745}\n"}
+,{"stream_name":"stdout","time":307.446215052,"data":"{'what': 'solver 128^2', 'grid': 128, 'dt': 0.01, 'steps': 500, 'precision': 'float64', 'batch': 256, 'sec_per_call': 16.48083960500003, 'sec_per_sample': 0.06437827970703136, 'test_rel_L2_mean': 4.1765034946602026e-05, 'test_rel_L2_max': 0.0002056346275114745}\n"}
+,{"stream_name":"stdout","time":372.423215675,"data":"[SAVED] /kaggle/working/results/stage5_timing.csv\n"}
+,{"stream_name":"stderr","time":372.75665551,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'\n"}
+,{"stream_name":"stderr","time":372.756689572,"data":"  parse = parser.parseString(pattern)\n"}
+,{"stream_name":"stderr","time":372.756695575,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n"}
+,{"stream_name":"stderr","time":372.756700349,"data":"  parser.resetCache()\n"}
+,{"stream_name":"stderr","time":372.756704628,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2010: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'\n"}
+,{"stream_name":"stderr","time":372.756709244,"data":"  p.space          = oneOf(self._space_widths)(\"space\")\n"}
+,{"stream_name":"stderr","time":372.7567135,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2020: PyparsingDeprecationWarning: 'leaveWhitespace' deprecated - use 'leave_whitespace'\n"}
+,{"stream_name":"stderr","time":372.756717985,"data":"  )(\"sym\").leaveWhitespace()\n"}
+,{"stream_name":"stderr","time":372.75672222,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:1984: PyparsingDeprecationWarning: 'setName' deprecated - use 'set_name'\n"}
+,{"stream_name":"stderr","time":372.756726615,"data":"  val.setName(key)\n"}
+,{"stream_name":"stderr","time":372.756730707,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:1987: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'\n"}
+,{"stream_name":"stderr","time":372.75673521,"data":"  val.setParseAction(getattr(self, key))\n"}
+,{"stream_name":"stderr","time":372.756739363,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2088: PyparsingDeprecationWarning: 'endQuoteChar' argument is deprecated, use 'end_quote_char'\n"}
+,{"stream_name":"stderr","time":372.756744313,"data":"  p.text = cmd(r\"\\text\", QuotedString('{', '\\\\', endQuoteChar=\"}\"))\n"}
+,{"stream_name":"stderr","time":372.756750598,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2146: PyparsingDeprecationWarning: 'unquoteResults' argument is deprecated, use 'unquote_results'\n"}
+,{"stream_name":"stderr","time":372.756792496,"data":"  p.math_string   = QuotedString('$', '\\\\', unquoteResults=False)\n"}
+,{"stream_name":"stderr","time":372.756797239,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2170: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'\n"}
+,{"stream_name":"stderr","time":372.756800911,"data":"  result = self._expression.parseString(s)\n"}
+,{"stream_name":"stderr","time":372.75680421,"data":"/usr/local/lib/python3.13/dist-packages/pyparsing/util.py:466: PyparsingDeprecationWarning: 'parseAll' argument is deprecated, use 'parse_all'\n"}
+,{"stream_name":"stderr","time":372.756807682,"data":"  return fn(self, *args, **kwargs)\n"}
+,{"stream_name":"stderr","time":372.7568109,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2178: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n"}
+,{"stream_name":"stderr","time":372.756815598,"data":"  ParserElement.resetCache()\n"}
+,{"stream_name":"stderr","time":372.756818822,"data":"\n"}
+,{"stream_name":"stderr","time":372.756821918,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'\n"}
+,{"stream_name":"stderr","time":372.756825553,"data":"  parse = parser.parseString(pattern)\n"}
+,{"stream_name":"stderr","time":372.756828747,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n"}
+,{"stream_name":"stderr","time":372.756832295,"data":"  parser.resetCache()\n"}
+,{"stream_name":"stderr","time":372.756835492,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2010: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'\n"}
+,{"stream_name":"stderr","time":372.756838905,"data":"  p.space          = oneOf(self._space_widths)(\"space\")\n"}
+,{"stream_name":"stderr","time":372.756842207,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2020: PyparsingDeprecationWarning: 'leaveWhitespace' deprecated - use 'leave_whitespace'\n"}
+,{"stream_name":"stderr","time":372.756847673,"data":"  )(\"sym\").leaveWhitespace()\n"}
+,{"stream_name":"stderr","time":372.75685438,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:1984: PyparsingDeprecationWarning: 'setName' deprecated - use 'set_name'\n"}
+,{"stream_name":"stderr","time":372.756857473,"data":"  val.setName(key)\n"}
+,{"stream_name":"stderr","time":372.756872477,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:1987: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'\n"}
+,{"stream_name":"stderr","time":372.756876821,"data":"  val.setParseAction(getattr(self, key))\n"}
+,{"stream_name":"stderr","time":372.756880804,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2088: PyparsingDeprecationWarning: 'endQuoteChar' argument is deprecated, use 'end_quote_char'\n"}
+,{"stream_name":"stderr","time":372.756884663,"data":"  p.text = cmd(r\"\\text\", QuotedString('{', '\\\\', endQuoteChar=\"}\"))\n"}
+,{"stream_name":"stderr","time":372.756889231,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2146: PyparsingDeprecationWarning: 'unquoteResults' argument is deprecated, use 'unquote_results'\n"}
+,{"stream_name":"stderr","time":372.75689299,"data":"  p.math_string   = QuotedString('$', '\\\\', unquoteResults=False)\n"}
+,{"stream_name":"stderr","time":372.756896409,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2170: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'\n"}
+,{"stream_name":"stderr","time":372.756899904,"data":"  result = self._expression.parseString(s)\n"}
+,{"stream_name":"stderr","time":372.756906993,"data":"/usr/local/lib/python3.13/dist-packages/pyparsing/util.py:466: PyparsingDeprecationWarning: 'parseAll' argument is deprecated, use 'parse_all'\n"}
+,{"stream_name":"stderr","time":372.756910564,"data":"  return fn(self, *args, **kwargs)\n"}
+,{"stream_name":"stderr","time":372.756914227,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2178: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n"}
+,{"stream_name":"stderr","time":372.756917828,"data":"  ParserElement.resetCache()\n"}
+,{"stream_name":"stdout","time":372.974057046,"data":"[SAVED] /kaggle/working/figures/stage5_timing.png\n"}
+,{"stream_name":"stderr","time":379.083690076,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":379.083719381,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":379.227779436,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":379.227816208,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":379.976923532,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":380.059927997,"data":"[NbConvertApp] Writing 85228 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":382.626152303,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":383.143227988,"data":"[NbConvertApp] Support files will be in __results___files/\n"}
+,{"stream_name":"stderr","time":383.143256146,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":383.143566078,"data":"[NbConvertApp] Writing 325328 bytes to __results__.html\n"}
 ]
