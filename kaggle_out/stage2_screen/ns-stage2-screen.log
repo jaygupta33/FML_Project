@@ -1,0 +1,73 @@
+[{"stream_name":"stderr","time":7.129770956,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":7.129801569,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":8.090346154,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.090390226,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.090395991,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.090400014,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.677866637,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.67789654,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.677900229,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.677902835,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":6283.956151103,"data":"[SAVED] /kaggle/working/results/stage2_screen.csv\n"}
+,{"stream_name":"stdout","time":6283.956203135,"data":"[SAVED] /kaggle/working/results/stage2_screen_history.csv\n"}
+,{"stream_name":"stdout","time":6283.956210246,"data":"[SAVED] /kaggle/working/results/stage2_screen_ranks.csv\n"}
+,{"stream_name":"stdout","time":6283.956215111,"data":"[SAVED] /kaggle/working/results/stage2_screen_memory_split.csv\n"}
+,{"stream_name":"stdout","time":6284.303722563,"data":"[SAVED] /kaggle/working/figures/stage2_adaptive_ranks.png\n"}
+,{"stream_name":"stderr","time":6284.732661815,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'\n"}
+,{"stream_name":"stderr","time":6284.732705083,"data":"  parse = parser.parseString(pattern)\n"}
+,{"stream_name":"stderr","time":6284.732713028,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n"}
+,{"stream_name":"stderr","time":6284.732719613,"data":"  parser.resetCache()\n"}
+,{"stream_name":"stderr","time":6284.732724884,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2010: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'\n"}
+,{"stream_name":"stderr","time":6284.73272972,"data":"  p.space          = oneOf(self._space_widths)(\"space\")\n"}
+,{"stream_name":"stderr","time":6284.732734549,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2020: PyparsingDeprecationWarning: 'leaveWhitespace' deprecated - use 'leave_whitespace'\n"}
+,{"stream_name":"stderr","time":6284.732740517,"data":"  )(\"sym\").leaveWhitespace()\n"}
+,{"stream_name":"stderr","time":6284.73274649,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:1984: PyparsingDeprecationWarning: 'setName' deprecated - use 'set_name'\n"}
+,{"stream_name":"stderr","time":6284.732752445,"data":"  val.setName(key)\n"}
+,{"stream_name":"stderr","time":6284.732757835,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:1987: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'\n"}
+,{"stream_name":"stderr","time":6284.732775209,"data":"  val.setParseAction(getattr(self, key))\n"}
+,{"stream_name":"stderr","time":6284.732779301,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2088: PyparsingDeprecationWarning: 'endQuoteChar' argument is deprecated, use 'end_quote_char'\n"}
+,{"stream_name":"stderr","time":6284.73278307,"data":"  p.text = cmd(r\"\\text\", QuotedString('{', '\\\\', endQuoteChar=\"}\"))\n"}
+,{"stream_name":"stderr","time":6284.73278739,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2146: PyparsingDeprecationWarning: 'unquoteResults' argument is deprecated, use 'unquote_results'\n"}
+,{"stream_name":"stderr","time":6284.732791314,"data":"  p.math_string   = QuotedString('$', '\\\\', unquoteResults=False)\n"}
+,{"stream_name":"stderr","time":6284.732795286,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2170: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'\n"}
+,{"stream_name":"stderr","time":6284.732799057,"data":"  result = self._expression.parseString(s)\n"}
+,{"stream_name":"stderr","time":6284.732802779,"data":"/usr/local/lib/python3.13/dist-packages/pyparsing/util.py:466: PyparsingDeprecationWarning: 'parseAll' argument is deprecated, use 'parse_all'\n"}
+,{"stream_name":"stderr","time":6284.732806701,"data":"  return fn(self, *args, **kwargs)\n"}
+,{"stream_name":"stderr","time":6284.732810315,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2178: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n"}
+,{"stream_name":"stderr","time":6284.732816755,"data":"  ParserElement.resetCache()\n"}
+,{"stream_name":"stderr","time":6284.732820499,"data":"\n"}
+,{"stream_name":"stderr","time":6284.732824038,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'\n"}
+,{"stream_name":"stderr","time":6284.732828213,"data":"  parse = parser.parseString(pattern)\n"}
+,{"stream_name":"stderr","time":6284.732831975,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n"}
+,{"stream_name":"stderr","time":6284.732835954,"data":"  parser.resetCache()\n"}
+,{"stream_name":"stderr","time":6284.732839299,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2010: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'\n"}
+,{"stream_name":"stderr","time":6284.732843301,"data":"  p.space          = oneOf(self._space_widths)(\"space\")\n"}
+,{"stream_name":"stderr","time":6284.732846923,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2020: PyparsingDeprecationWarning: 'leaveWhitespace' deprecated - use 'leave_whitespace'\n"}
+,{"stream_name":"stderr","time":6284.732851088,"data":"  )(\"sym\").leaveWhitespace()\n"}
+,{"stream_name":"stderr","time":6284.732854591,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:1984: PyparsingDeprecationWarning: 'setName' deprecated - use 'set_name'\n"}
+,{"stream_name":"stderr","time":6284.732858394,"data":"  val.setName(key)\n"}
+,{"stream_name":"stderr","time":6284.73286193,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:1987: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'\n"}
+,{"stream_name":"stderr","time":6284.732865736,"data":"  val.setParseAction(getattr(self, key))\n"}
+,{"stream_name":"stderr","time":6284.732869401,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2088: PyparsingDeprecationWarning: 'endQuoteChar' argument is deprecated, use 'end_quote_char'\n"}
+,{"stream_name":"stderr","time":6284.732879005,"data":"  p.text = cmd(r\"\\text\", QuotedString('{', '\\\\', endQuoteChar=\"}\"))\n"}
+,{"stream_name":"stderr","time":6284.732883491,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2146: PyparsingDeprecationWarning: 'unquoteResults' argument is deprecated, use 'unquote_results'\n"}
+,{"stream_name":"stderr","time":6284.732887292,"data":"  p.math_string   = QuotedString('$', '\\\\', unquoteResults=False)\n"}
+,{"stream_name":"stderr","time":6284.7328908,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2170: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'\n"}
+,{"stream_name":"stderr","time":6284.732894694,"data":"  result = self._expression.parseString(s)\n"}
+,{"stream_name":"stderr","time":6284.732898594,"data":"/usr/local/lib/python3.13/dist-packages/pyparsing/util.py:466: PyparsingDeprecationWarning: 'parseAll' argument is deprecated, use 'parse_all'\n"}
+,{"stream_name":"stderr","time":6284.732903077,"data":"  return fn(self, *args, **kwargs)\n"}
+,{"stream_name":"stderr","time":6284.732907572,"data":"/usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:2178: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n"}
+,{"stream_name":"stderr","time":6284.732911574,"data":"  ParserElement.resetCache()\n"}
+,{"stream_name":"stdout","time":6284.788503113,"data":"[SAVED] /kaggle/working/figures/stage2_screen_curves.png\n"}
+,{"stream_name":"stderr","time":6290.526429675,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":6290.526457067,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":6290.699087703,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":6290.699107857,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":6291.527973507,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":6291.706872815,"data":"[NbConvertApp] Writing 1069856 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":6294.183598366,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":6294.811914022,"data":"[NbConvertApp] Support files will be in __results___files/\n"}
+,{"stream_name":"stderr","time":6294.811936544,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":6294.812240701,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":6294.812483263,"data":"[NbConvertApp] Writing 1037687 bytes to __results__.html\n"}
+]
