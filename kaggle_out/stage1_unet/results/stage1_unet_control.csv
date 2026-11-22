@@ -1,0 +1,3 @@
+label,loss,params,param_MB,opt_state_MB,peak_gpu_MB,sec_per_epoch,best_epoch,best_val_loss,test_loss,test_mse_norm,test_rel_L2,run,optimizer,lr,seed,epochs,batch,loss_fn,monitor,torch,python,gpu
+U-Net MSE lr 0.001,MSELoss,2140065,8.56026,17.120664,3646.83008,105.20856493711472,20,0.003374267775565386,0.003386493057012558,0.003386493057012558,0.05545015615256254,U-Net,Adam,0.001,0,20,32,MSE,loss,2.11.0+cu130,3.13.16,Tesla T4
+U-Net spectral k2 lr 0.001,MSE + H1-spectral (λ=0.5),2140065,8.56026,17.120664,3757.770752,105.21920375823974,20,0.012956527963280678,0.012878746166825295,0.0029882287308573723,0.051592123910475234,U-Net,Adam,0.001,0,20,32,"SpectralLoss(0.5,k2)",mse_norm,2.11.0+cu130,3.13.16,Tesla T4
