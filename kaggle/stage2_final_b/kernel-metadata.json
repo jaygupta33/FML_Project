@@ -1,0 +1,17 @@
+{
+  "id": "jaygupta33/ns-stage2-final-b",
+  "title": "NS Stage2 final b",
+  "code_file": "stage2_final_b.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": [
+    "jaygupta33/ns-surrogate-code"
+  ],
+  "kernel_sources": [
+    "jaygupta33/ns-data"
+  ],
+  "competition_sources": []
+}
