@@ -1,0 +1,17 @@
+{
+  "id": "jaygupta33/ns-stage5-timing",
+  "title": "NS Stage5 timing",
+  "code_file": "stage5_timing.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": [
+    "jaygupta33/ns-surrogate-code"
+  ],
+  "kernel_sources": [
+    "jaygupta33/ns-data"
+  ],
+  "competition_sources": []
+}

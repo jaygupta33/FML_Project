@@ -27,7 +27,8 @@ if importlib.util.find_spec("neuralop") is None:
     !pip install -q neuraloperator
 # project code (nsbench, optim, solver) comes from the private ns-surrogate-code dataset
 code_dir = next((os.path.dirname(os.path.dirname(p)) for p in
-                 glob.glob("/kaggle/input/**/nsbench/__init__.py", recursive=True)), os.path.abspath(".."))
+                 glob.glob("/kaggle/input/**/nsbench/__init__.py", recursive=True)),
+                next(os.path.abspath(d) for d in (".", "..") if os.path.isdir(f"{d}/nsbench")))
 sys.path.insert(0, code_dir)
 import torch, numpy as np, pandas as pd
 import matplotlib.pyplot as plt

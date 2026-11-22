@@ -1,7 +1,7 @@
 # Dataset notes: `nsforcing_128` (Zenodo 12825163)
 
-Status: **paper definition found; numerical confirmation still pending (Stage 4).**
-Labels: *[paper]* = stated in arXiv 2310.00120; *[code]* = neuraloperator source; *[measured]* = our notebook; *[not stated]* = no source found.
+Status: **confirmed by Stage 4 (2026-11-22): `x` is the forcing $f$, `y` is $\omega(T=5)$ from rest, $\nu=1/500$.**
+Labels: *[paper]* = stated in arXiv 2310.00120; *[code]* = neuraloperator source; *[measured]* = our notebook; *[not stated]* = no source found; *[Stage 4]* = measured with our solver (`notebooks/stage4_solver_validation.ipynb`).
 
 ## What the files contain
 | Item | Value | Source |
@@ -30,13 +30,20 @@ $$\partial_t \omega + \nabla^\perp \phi \cdot \nabla\omega = \tfrac{1}{Re}\,\Del
 | Native grid, downsampling to 128 | — | [not stated] |
 | KL truncation / number of modes, extra amplitude scaling | — | [not stated] |
 
-**Conflicting source:** the neuraloperator `NavierStokesDataset` docstring says *"Input and output are both 2d fields with one channel of data which describes the vorticity at each point."* It gives no time, Re, domain or forcing, and the repo contains no data-generation code. The paper is the more specific source, so the working reading is **`x` = forcing `f`, `y` = vorticity at `T = 5` starting from rest** — not yet verified.
+**Conflicting source:** the neuraloperator `NavierStokesDataset` docstring says *"Input and output are both 2d fields with one channel of data which describes the vorticity at each point."* It gives no time, Re, domain or forcing, and the repo contains no data-generation code. The paper is the more specific source; Stage 4 confirms its reading (below). The docstring is wrong for this dataset.
 
-## How to confirm (Stage 4)
-1. **Spectrum check (cheap, no solver):** if `x ~ N(0, 27(-Δ+9I)^{-4})`, its radially averaged power spectrum should follow $(|k|^2+9)^{-4}$ up to a constant, and the constant fixes the amplitude convention (our measured std 0.154 vs the value implied by the KL normalisation used).
-2. **Solver check (decisive):** run our pseudo-spectral solver from $\omega = 0$ with forcing `x`, $\nu = 1/500$, domain $[0,2\pi)^2$, to $T = 5$, on ≥ 20 test samples; compare with `y` by relative $L_2$. Converge `dt` first. Unknown integrator/`dt` in the paper means small differences are expected; large ones mean a wrong reading (domain, scaling, T, or what `x` is).
+## Stage 4 confirmation
+| Check | Result | Source |
+|---|---|---|
+| Spectrum of `x` | mean power per mode follows $c(|k|^2+9)^{-4}$; ratio 0.88–1.06 for $1\le|k|\le31$ | [Stage 4] |
+| Axis convention | $u = (\partial_b\psi, -\partial_a\psi)$ for array axes $(a,b)$; the swapped convention gives rel. $L^2$ 0.86 | [Stage 4] |
+| Viscosity | $\nu=1/500$: rel. $L^2$ $2.2\times10^{-5}$; $\nu=1/1000$: $2.2\times10^{-2}$ (8 train samples) | [Stage 4] |
+| Agreement on 50 **test** samples | rel. $L^2$ mean $2.7\times10^{-5}$, median $1.7\times10^{-5}$, max $2.1\times10^{-4}$ (128², CN–Heun, dt $10^{-3}$) | [Stage 4] |
+| Native grid | 256² halves the remaining error ($3.7\times10^{-6}$); 512² gives no further change, so the data were likely generated on ≥256² | [Stage 4] |
+| Integrator | not identifiable: CN–Heun and IF-RK4 agree to $<10^{-6}$ at these settings | [Stage 4] |
 
-Until both checks pass, notebook text says only "input field `x`" and "output field `y`".
+Settings were chosen on training samples; the test agreement was measured once, afterwards.
+Notebook text can now say "forcing $f$" for `x` and "vorticity $\omega(T{=}5)$" for `y`.
 
 ## Sources
 - arXiv 2310.00120, HTML v1, Sec. 4.1 "Data", 4.2 (read 2026-11-21).
