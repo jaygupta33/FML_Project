@@ -1,0 +1,2 @@
+optimizer,member rel L2 mean,member rel L2 std,ensemble rel L2,gain vs mean member,spread / error (mean),"Spearman(spread, error)"
+Adam,0.03640357189906137,0.001932615165159603,0.030995136631539102,0.14856880754774837,0.75149004049373,0.5473123758280939
