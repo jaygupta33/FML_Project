@@ -103,4 +103,4 @@ save_fig("stage2_screen_curves", fig)
 if __name__ == "__main__":
     nb = ROOT / "notebooks/stage2_screen.ipynb"
     build(SCREEN, nb)
-    kernel("stage2_screen", "ns-stage2-screen", "NS Stage2 optimizer screen", nb)
+    kernel("stage2_screen", "ns-stage2-screen", "NS Stage2 screen", nb)
