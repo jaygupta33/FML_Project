@@ -35,7 +35,7 @@ $$\partial_t \omega + \nabla^\perp \phi \cdot \nabla\omega = \tfrac{1}{Re}\,\Del
 ## Stage 4 confirmation
 | Check | Result | Source |
 |---|---|---|
-| Spectrum of `x` | mean power per mode follows $c(|k|^2+9)^{-4}$; ratio 0.88–1.06 for $1\le|k|\le31$ | [Stage 4] |
+| Spectrum of `x` | mean power per mode follows $c(|k|^2+9)^{-4}$; ratio 0.85–1.07 for $1\le|k|\le31$ | [Stage 4] |
 | Axis convention | $u = (\partial_b\psi, -\partial_a\psi)$ for array axes $(a,b)$; the swapped convention gives rel. $L^2$ 0.86 | [Stage 4] |
 | Viscosity | $\nu=1/500$: rel. $L^2$ $2.2\times10^{-5}$; $\nu=1/1000$: $2.2\times10^{-2}$ (8 train samples) | [Stage 4] |
 | Agreement on 50 **test** samples | rel. $L^2$ mean $2.7\times10^{-5}$, median $1.7\times10^{-5}$, max $2.1\times10^{-4}$ (128², CN–Heun, dt $10^{-3}$) | [Stage 4] |

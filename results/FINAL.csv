@@ -1,0 +1,83 @@
+stage,item,metric,value,unit,n_seeds,source
+2 optimizers,FNO Adam,test rel L2 (mean),0.03640294991609288,,3.0,stage1_fno_adam_seeds.csv
+2 optimizers,FNO Adam,test rel L2 (std),0.0019326515176551673,,3.0,stage1_fno_adam_seeds.csv
+2 optimizers,FNO Adam,"optimizer state, end of training",38.155944,MB,3.0,stage1_fno_adam_seeds.csv
+2 optimizers,FNO Adam,"optimizer state, peak during training",38.155944,MB,3.0,rank logs
+2 optimizers,FNO Adam,peak GPU memory,4042.851669333333,MB,3.0,stage1_fno_adam_seeds.csv
+2 optimizers,FNO Adam,training time per epoch,81.08977224826812,s,3.0,stage1_fno_adam_seeds.csv
+3 ensembles,FNO Adam K=3,test rel L2,0.030995136631539102,,3.0,stage3_ensembles.csv
+3 ensembles,FNO Adam K=3,"Spearman(spread, error)",0.5473123758280939,,3.0,stage3_ensembles.csv
+3 ensembles,FNO Adam K=3,"optimizer state, peak, all members",114.46783199999999,MB,3.0,derived
+2 optimizers,FNO GaLore r=16,test rel L2 (mean),0.03857583766432148,,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO GaLore r=16,test rel L2 (std),0.0007626695043558278,,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO GaLore r=16,"optimizer state, end of training",9.877,MB,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO GaLore r=16,"optimizer state, peak during training",9.876952,MB,3.0,rank logs
+2 optimizers,FNO GaLore r=16,peak GPU memory,3965.605888,MB,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO GaLore r=16,training time per epoch,80.2495011806488,s,3.0,"stage2_final_{a,b}.csv"
+3 ensembles,FNO GaLore r=16 K=3,test rel L2,0.033321579364065615,,3.0,stage3_ensembles.csv
+3 ensembles,FNO GaLore r=16 K=3,"Spearman(spread, error)",0.5494332713583178,,3.0,stage3_ensembles.csv
+3 ensembles,FNO GaLore r=16 K=3,"optimizer state, peak, all members",29.630855999999998,MB,3.0,derived
+2 optimizers,FNO adaptive tau=0.999,test rel L2 (mean),0.03880633953880061,,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO adaptive tau=0.999,test rel L2 (std),0.00026251576336751845,,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO adaptive tau=0.999,"optimizer state, end of training",6.47476,MB,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO adaptive tau=0.999,"optimizer state, peak during training",13.72412,MB,3.0,rank logs
+2 optimizers,FNO adaptive tau=0.999,peak GPU memory,3967.5869866666667,MB,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO adaptive tau=0.999,training time per epoch,81.66345483462015,s,3.0,"stage2_final_{a,b}.csv"
+3 ensembles,FNO adaptive tau=0.999 K=3,test rel L2,0.033079215423090454,,3.0,stage3_ensembles.csv
+3 ensembles,FNO adaptive tau=0.999 K=3,"Spearman(spread, error)",0.5775458418864605,,3.0,stage3_ensembles.csv
+3 ensembles,FNO adaptive tau=0.999 K=3,"optimizer state, peak, all members",41.17236,MB,3.0,derived
+2 optimizers,FNO GaLore r=8,test rel L2 (mean),0.042379960749583605,,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO GaLore r=8,test rel L2 (std),0.0006161597098373433,,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO GaLore r=8,"optimizer state, end of training",5.142024,MB,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO GaLore r=8,"optimizer state, peak during training",5.141976,MB,3.0,rank logs
+2 optimizers,FNO GaLore r=8,peak GPU memory,3958.77376,MB,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO GaLore r=8,training time per epoch,81.59327632586161,s,3.0,"stage2_final_{a,b}.csv"
+3 ensembles,FNO GaLore r=8 K=3,test rel L2,0.03614029528729765,,3.0,stage3_ensembles.csv
+3 ensembles,FNO GaLore r=8 K=3,"Spearman(spread, error)",0.6075319368829842,,3.0,stage3_ensembles.csv
+3 ensembles,FNO GaLore r=8 K=3,"optimizer state, peak, all members",15.425927999999999,MB,3.0,derived
+2 optimizers,FNO adaptive tau=0.99,test rel L2 (mean),0.04543225410232595,,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO adaptive tau=0.99,test rel L2 (std),0.0012636466483252281,,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO adaptive tau=0.99,"optimizer state, end of training",2.627592,MB,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO adaptive tau=0.99,"optimizer state, peak during training",4.550103999999999,MB,3.0,rank logs
+2 optimizers,FNO adaptive tau=0.99,peak GPU memory,3957.592064,MB,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO adaptive tau=0.99,training time per epoch,79.63575944900514,s,3.0,"stage2_final_{a,b}.csv"
+3 ensembles,FNO adaptive tau=0.99 K=3,test rel L2,0.0389171215004867,,3.0,stage3_ensembles.csv
+3 ensembles,FNO adaptive tau=0.99 K=3,"Spearman(spread, error)",0.6422758710689678,,3.0,stage3_ensembles.csv
+3 ensembles,FNO adaptive tau=0.99 K=3,"optimizer state, peak, all members",13.650311999999998,MB,3.0,derived
+2 optimizers,FNO GaLore r=4,test rel L2 (mean),0.04671854399794956,,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO GaLore r=4,test rel L2 (std),0.0008899189993195144,,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO GaLore r=4,"optimizer state, end of training",2.774536,MB,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO GaLore r=4,"optimizer state, peak during training",2.774488,MB,3.0,rank logs
+2 optimizers,FNO GaLore r=4,peak GPU memory,3956.406272,MB,3.0,"stage2_final_{a,b}.csv"
+2 optimizers,FNO GaLore r=4,training time per epoch,79.59337873061499,s,3.0,"stage2_final_{a,b}.csv"
+3 ensembles,FNO GaLore r=4 K=3,test rel L2,0.03940854308952744,,3.0,stage3_ensembles.csv
+3 ensembles,FNO GaLore r=4 K=3,"Spearman(spread, error)",0.6628537027134256,,3.0,stage3_ensembles.csv
+3 ensembles,FNO GaLore r=4 K=3,"optimizer state, peak, all members",8.323464,MB,3.0,derived
+1 baselines,U-Net MSE lr 0.001,test rel L2,0.05545015615256254,,1.0,stage1_unet_control.csv
+1 baselines,U-Net spectral k2 lr 0.001,test rel L2,0.051592123910475234,,1.0,stage1_unet_control.csv
+1 baselines,U-Net MSE,"relative error energy, low (k < 8)",0.0024571801950972515,,1.0,stage1_unet_band_errors.csv
+1 baselines,U-Net MSE,"relative error energy, mid (8 ≤ k ≤ 32)",0.19163310504209966,,1.0,stage1_unet_band_errors.csv
+1 baselines,U-Net MSE,"relative error energy, high (k > 32)",34.50651741962564,,1.0,stage1_unet_band_errors.csv
+1 baselines,U-Net spectral k2,"relative error energy, low (k < 8)",0.002542581090363278,,1.0,stage1_unet_band_errors.csv
+1 baselines,U-Net spectral k2,"relative error energy, mid (8 ≤ k ≤ 32)",0.09500724661768882,,1.0,stage1_unet_band_errors.csv
+1 baselines,U-Net spectral k2,"relative error energy, high (k > 32)",3.7919876629649423,,1.0,stage1_unet_band_errors.csv
+4 solver,own solver 128^2 CN-Heun dt 1e-3,"rel L2 vs dataset, 50 test samples (mean)",2.696136893845793e-05,,1.0,stage4_test_agreement.csv
+4 solver,own solver 128^2 CN-Heun dt 1e-3,"rel L2 vs dataset, 50 test samples (max)",0.00020505240817321577,,1.0,stage4_test_agreement.csv
+5 timing,FNO (float32),"time per sample, best batch size, Tesla T4",3.4819385718749984,ms,1.0,stage5_timing.csv
+5 timing,U-Net (float32),"time per sample, best batch size, Tesla T4",2.924712428124998,ms,1.0,stage5_timing.csv
+5 timing,solver 128^2 (float32),"time per sample, best batch size, Tesla T4",15.490176187499927,ms,1.0,stage5_timing.csv
+5 timing,solver 128^2 (float32),test rel L2 vs dataset (64 samples),4.183747258703309e-05,,1.0,stage5_timing.csv
+5 timing,solver 128^2 (float64),"time per sample, best batch size, Tesla T4",64.37827970703137,ms,1.0,stage5_timing.csv
+5 timing,solver 128^2 (float64),test rel L2 vs dataset (64 samples),4.1765034946602026e-05,,1.0,stage5_timing.csv
+5 timing,solver 24^2 (float32),"time per sample, best batch size, Tesla T4",0.30045898046870967,ms,1.0,stage5_timing.csv
+5 timing,solver 24^2 (float32),test rel L2 vs dataset (64 samples),0.077740928281503,,1.0,stage5_timing.csv
+5 timing,solver 256^2 (float32),"time per sample, best batch size, Tesla T4",192.6178562304688,ms,1.0,stage5_timing.csv
+5 timing,solver 256^2 (float32),test rel L2 vs dataset (64 samples),3.1741170138256965e-05,,1.0,stage5_timing.csv
+5 timing,solver 32^2 (float32),"time per sample, best batch size, Tesla T4",0.2966787539062654,ms,1.0,stage5_timing.csv
+5 timing,solver 32^2 (float32),test rel L2 vs dataset (64 samples),0.03258254466072312,,1.0,stage5_timing.csv
+5 timing,solver 48^2 (float32),"time per sample, best batch size, Tesla T4",0.4560016093749786,ms,1.0,stage5_timing.csv
+5 timing,solver 48^2 (float32),test rel L2 vs dataset (64 samples),0.00914897142515679,,1.0,stage5_timing.csv
+5 timing,solver 64^2 (float32),"time per sample, best batch size, Tesla T4",2.5321188359375135,ms,1.0,stage5_timing.csv
+5 timing,solver 64^2 (float32),test rel L2 vs dataset (64 samples),0.002292376194686323,,1.0,stage5_timing.csv
+5 timing,solver 96^2 (float32),"time per sample, best batch size, Tesla T4",5.767775874999437,ms,1.0,stage5_timing.csv
+5 timing,solver 96^2 (float32),test rel L2 vs dataset (64 samples),0.0003000903014111371,,1.0,stage5_timing.csv
