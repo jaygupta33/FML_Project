@@ -94,6 +94,18 @@ for _, r in t256.iterrows():
     add("5 timing", f"{r.what} ({r.precision})", "time per sample, best batch size, Tesla T4", r.sec_per_sample * 1e3, "ms", 1, "stage5_timing.csv")
     if not np.isnan(r.test_rel_L2_mean):
         add("5 timing", f"{r.what} ({r.precision})", "test rel L2 vs dataset (64 samples)", r.test_rel_L2_mean, "", 1, "stage5_timing.csv")
+
+# Stage 7 active learning: included once both strategies have results
+AL_FILES = [R / f"stage7_{s}.csv" for s in ("uncertainty", "random")]
+al = pd.concat([pd.read_csv(p) for p in AL_FILES], ignore_index=True) if all(p.exists() for p in AL_FILES) else None
+if al is not None:
+    for _, r in al.iterrows():
+        src = f"stage7_{r.strategy}.csv"
+        add("7 active learning", f"{r.strategy} selection, n={r.n_labelled}", "ensemble test rel L2 (K=3, GaLore r=16)",
+            r.ensemble_test_rel_L2, "", 3, src)
+        add("7 active learning", f"{r.strategy} selection, n={r.n_labelled}", "mean member test rel L2",
+            r.member_test_rel_L2_mean, "", 3, src)
+
 FINAL = pd.DataFrame(rows)
 FINAL.to_csv(R / "FINAL.csv", index=False)
 print(f"FINAL.csv: {len(FINAL)} rows")
@@ -189,6 +201,20 @@ for ax, name in zip(axs, ("Adam", "GaLore r=16")):
     ax.title.set_fontsize(8.5)
 axs[0].set_ylabel("ensemble error (relative $L^2$)")
 fig.tight_layout(); fig.savefig(F / "fig_spread_error.pdf"); fig.savefig(F / "fig_spread_error.png"); plt.close(fig)
+# ------------------------------------------------------------------ Fig 7: active learning, test error vs labelled samples
+AL_STYLE = {"uncertainty": (C["solver"], "o", "uncertainty selection"), "random": (INK2, "s", "random selection (control)")}
+if al is not None:
+    fig, ax = plt.subplots(figsize=(6.2, 3.6))
+    for s, g in al.groupby("strategy"):
+        col, mk, lab = AL_STYLE[s]
+        g = g.sort_values("n_labelled")
+        ax.plot(g.n_labelled, g.ensemble_test_rel_L2, marker=mk, color=col, ms=7, mec="white", label=f"{lab}, ensemble")
+        ax.plot(g.n_labelled, g.member_test_rel_L2_mean, marker=mk, color=col, ms=5, mec="white", ls="--", lw=1.2,
+                alpha=0.7, label=f"{lab}, mean member")
+    ax.set(xlabel="labelled training samples", ylabel="test relative $L^2$", yscale="log")
+    ax.set_xticks(sorted(al.n_labelled.unique()))
+    ax.legend(fontsize=7.5)
+    fig.tight_layout(); fig.savefig(F / "fig_active_learning.pdf"); fig.savefig(F / "fig_active_learning.png"); plt.close(fig)
 print("figures written to", F)
 
 # ------------------------------------------------------------------ Stage 8: break-even
@@ -249,6 +275,15 @@ lines.append(f"U-Net spectral ($\\lambda{{=}}0.5$, $|k|^2$), lr ${u.loc[k2_lbl, 
 lines.append(f"FNO + Adam (3 seeds) & -- & -- & {opt.loc['Adam', 'test_rel_L2_mean']:.4f} $\\pm$ {opt.loc['Adam', 'test_rel_L2_std']:.4f} \\\\")
 lines += [r"\bottomrule", r"\end{tabular}"]
 (G / "tab_baselines.tex").write_text("\n".join(lines))
+
+if al is not None:
+    w = al.pivot(index="n_labelled", columns="strategy", values="ensemble_test_rel_L2")
+    lines = [r"\begin{tabular}{lccc}", r"\toprule",
+             r"labelled samples & random & uncertainty & change \\", r"\midrule"]
+    for n, r in w.iterrows():
+        lines.append(f"{n:,} & {r['random']:.4f} & {r['uncertainty']:.4f} & {100 * (r['uncertainty'] / r['random'] - 1):+.1f}\\% \\\\")
+    lines += [r"\bottomrule", r"\end{tabular}"]
+    (G / "tab_active.tex").write_text("\n".join(lines))
 
 hyp = pd.read_csv(R / "stage4_hypotheses.csv"); conv = pd.read_csv(R / "stage4_convergence.csv")
 spec = pd.read_csv(R / "stage4_input_spectrum.csv")
