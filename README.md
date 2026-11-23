@@ -10,7 +10,7 @@ Main results table: `results/FINAL.csv`.
 ## Layout
 | Path | Contents |
 |---|---|
-| `navier-stokes.ipynb` | original team notebook (data, models, trainer, gradient study) |
+| `navier-stokes.ipynb` | main notebook. Part 1: data, models, trainer, baselines and gradient study. Part 2: every stage's saved results and figures, plus a summary (added by `tools/main_notebook_results.py`) |
 | `notebooks/` | one notebook per stage (built by `tools/stage*_notebooks.py`) |
 | `nsbench/` | models, `Trainer`, `SpectralLoss` (generated from the main notebook by `tools/build_nsbench.py`), data loading, output helpers |
 | `optim/lowrank_adam.py` | complex-aware low-rank Adam, fixed or adaptive rank |
