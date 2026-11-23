@@ -1,0 +1,17 @@
+{
+  "id": "jaygupta33/ns-stage7-al-random",
+  "title": "NS Stage7 AL random",
+  "code_file": "stage7_al_random.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": [
+    "jaygupta33/ns-surrogate-code"
+  ],
+  "kernel_sources": [
+    "jaygupta33/ns-data"
+  ],
+  "competition_sources": []
+}
