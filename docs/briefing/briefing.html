@@ -53,7 +53,7 @@
 <div class="tag">FML course project · briefing for the presentation</div>
 <h1>Rank-Adaptive Optimization for Memory-Efficient Neural Surrogates of Navier-Stokes Flow</h1>
 <div class="sub">What we set out to do, what we ran, what we found, and how to present it</div>
-<div class="meta">Prepared 24 Nov 2026 from the project repository. Every number here comes from the saved result files (<code>results/</code>); figure files are named in each caption so they can be put straight on slides.</div>
+<div class="meta">Prepared 24 Nov 2026 from the project repository (github.com/jaygupta33/FML_Project). Every number here comes from the saved result files (<code>results/</code>); figure files are named in each caption so they can be put straight on slides.</div>
 
 <h2>The project in one minute</h2>
 <p>Simulating fluid flow means solving the <b>Navier-Stokes equations</b> numerically, which is accurate but slow. A <b>neural surrogate</b> is a network trained to imitate the solver: it takes the same input and predicts the result in one forward pass. To trust a surrogate we also want to know <i>when it is unsure</i>; the standard way is to train several networks (an <b>ensemble</b>) and look at how much they disagree. That multiplies training memory, and a large part of training memory is the <b>optimizer's state</b> (Adam stores two extra numbers per weight).</p>
@@ -65,7 +65,7 @@
   <li><span class="negt">Did not work:</span> letting the rank adapt <b>did not beat</b> simply picking a good fixed rank, once its peak memory is counted.</li>
   <li><span class="mix">Small in practice:</span> total GPU memory dropped only <b>~2%</b>, because the optimizer state is tiny next to the network's activations for this model.</li>
   <li><span class="pos">Works:</span> 3-model ensembles are <b>14–16% more accurate</b>, and their disagreement points to harder samples, but it underestimates the real error (about 0.75×).</li>
-  <li><span class="negt">Did not work:</span> choosing new training data by ensemble disagreement was <b>4–6% worse than random</b> choice; and at equal accuracy our FNO is <b>~12× slower</b> than a coarse solver run.</li>
+  <li><span class="negt">Did not work:</span> choosing new training data by ensemble disagreement was <b>4–6% worse than random</b> choice; and at equal accuracy our FNO is <b>~12× slower</b> than a coarse solver run (still <b>8.6×</b> with half precision and compilation).</li>
 </ol></div>
 <p class="small">Negative results are reported as they are. They are findings, not failures of the work: each one was tested with a fair control.</p>
 
@@ -118,7 +118,7 @@
   <tr><td>2 Optimizers</td><td>Low-rank and adaptive-rank vs Adam?</td><td class="mix">Memory 4–14× smaller, error +6–28%; adaptive no better than fixed</td></tr>
   <tr><td>3 Ensembles</td><td>Do 3-model ensembles help, and is their spread useful?</td><td class="pos">14–16% more accurate; spread informative but too small</td></tr>
   <tr><td>4 Solver check</td><td>Can we reproduce the dataset with our own solver?</td><td class="pos">Yes, to 0.003%</td></tr>
-  <tr><td>5 Speed</td><td>Is the surrogate faster than the solver?</td><td class="negt">Not at equal accuracy</td></tr>
+  <tr><td>5 Speed</td><td>Is the surrogate faster than the solver?</td><td class="negt">Not at equal accuracy (also with fp16)</td></tr>
   <tr><td>7 Active learning</td><td>Does picking data by uncertainty beat random?</td><td class="negt">No, 4–6% worse</td></tr>
   <tr><td>6 Rollout</td><td>Step-by-step prediction over time</td><td class="small">Not done (out of time)</td></tr>
 </table>
@@ -228,15 +228,17 @@
   <tr><td>Solver, 48 × 48 grid</td><td class="n">0.46 ms</td><td class="n">0.009</td></tr>
   <tr><td>U-Net</td><td class="n">2.9 ms</td><td class="n">0.052–0.056</td></tr>
   <tr><td><b>FNO</b></td><td class="n"><b>3.5 ms</b></td><td class="n"><b>0.036</b></td></tr>
+  <tr><td>FNO, half precision + compiled (Stage 5b)</td><td class="n">2.55 ms</td><td class="n">0.038</td></tr>
   <tr><td>Solver, 128 × 128 grid (full accuracy)</td><td class="n">15.5 ms</td><td class="n">0.00004</td></tr>
 </table>
 <ul>
   <li><b>At equal accuracy the FNO is slower</b>: a coarse 32 × 32 solve is already more accurate (0.033 vs 0.036) and about <b>12× faster</b>.</li>
+  <li><b>Making the FNO faster doesn't close the gap.</b> We retrained it and ran the same model in half precision (fp16) and with PyTorch's compiler: 1.34× faster (2.55 ms), accuracy unchanged. The 32 × 32 solve is still <b>8.6× faster</b>.</li>
   <li>The FNO is only faster (4.4×) than the full-accuracy 128 × 128 solve, and it would need ~145,000 predictions before that saving repays the cost of generating its training data and training it.</li>
 </ul>
 <figure><img src="../../figures/final/fig_speed_accuracy.png" style="width:72%">
 <figcaption>Speed vs accuracy (both log scale). The purple line is our solver at different grid sizes; lower-left is better. The networks sit above and to the right of the solver line. File: <code>figures/final/fig_speed_accuracy.png</code></figcaption></figure>
-<div class="slide">Surrogates are often presented as "much faster than the solver". Compared fairly, at the same accuracy, our FNO is about 12× slower than a coarse solver run. It only wins against a needlessly fine solver, and needs ~145k uses to pay back its training.</div>
+<div class="slide">Surrogates are often presented as "much faster than the solver". Compared fairly, at the same accuracy, our FNO is about 12× slower than a coarse solver run (8.6× even in half precision). It is 4–55× faster than the full-accuracy solver, but needs ~145k uses to pay back its training. Fair comparisons like this are often skipped in the literature.</div>
 
 <!-- ======================================================= -->
 <h2 class="break">5. Limitations (say these honestly on a slide)</h2>
@@ -275,7 +277,7 @@
   <tr><th>What</th><th>Path in the repository</th></tr>
   <tr><td>Main notebook (everything in one place)</td><td><code>navier-stokes.ipynb</code></td></tr>
   <tr><td>One notebook per stage</td><td><code>notebooks/stage*.ipynb</code></td></tr>
-  <tr><td>All numbers in one table (102 rows, with units and sources)</td><td><code>results/FINAL.csv</code></td></tr>
+  <tr><td>All numbers in one table (110 rows, with units and sources)</td><td><code>results/FINAL.csv</code></td></tr>
   <tr><td>Slide-ready figures (PNG and PDF)</td><td><code>figures/final/</code>, plus <code>figures/data_samples.png</code>, <code>figures/gradient_rank_per_layer.png</code>, <code>figures/stage4_examples.png</code></td></tr>
   <tr><td>Written report (LaTeX)</td><td><code>report/report.tex</code></td></tr>
   <tr><td>Optimizer and solver code</td><td><code>optim/lowrank_adam.py</code>, <code>solver/ns2d.py</code></td></tr>
@@ -296,6 +298,8 @@
   <tr><td>Active learning vs random</td><td class="n">4–6% worse</td></tr>
   <tr><td>Our solver vs dataset (50 test samples)</td><td class="n">2.7 × 10⁻⁵ mean error</td></tr>
   <tr><td>FNO time per sample vs 32 × 32 solver</td><td class="n">3.5 ms vs 0.30 ms</td></tr>
+  <tr><td>FNO, half precision + compiled</td><td class="n">2.55 ms (1.34× faster, same accuracy)</td></tr>
+  <tr><td>FNO vs full-accuracy solver (128² / 256²)</td><td class="n">4.4× / 55× faster</td></tr>
   <tr><td>Predictions needed to repay FNO training</td><td class="n">≈ 145,000</td></tr>
 </table>
 

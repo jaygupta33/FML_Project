@@ -1,0 +1,102 @@
+[{"stream_name":"stderr","time":7.095898516,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":7.09593487,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":8.044803916,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.044849744,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.044854785,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.044858679,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.641899072,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.641943724,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.641949194,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.641953722,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":1724.356800626,"data":"[SAVED] /kaggle/working/results/stage5b_fno_train.csv\n"}
+,{"stream_name":"stderr","time":1766.944984248,"data":"/usr/local/lib/python3.13/dist-packages/neuralop/layers/spectral_convolution.py:428: UserWarning: ComplexHalf support is experimental and many operators don't support it yet. (Triggered internally at /pytorch/aten/src/ATen/EmptyTensor.cpp:54.)\n"}
+,{"stream_name":"stderr","time":1766.94502434,"data":"  x = torch.fft.rfftn(x, norm=self.fft_norm, dim=fft_dims)\n"}
+,{"stream_name":"stderr","time":1766.945028873,"data":"\n"}
+,{"stream_name":"stderr","time":1766.945031825,"data":"/usr/local/lib/python3.13/dist-packages/neuralop/layers/spectral_convolution.py:428: UserWarning: ComplexHalf support is experimental and many operators don't support it yet. (Triggered internally at /pytorch/aten/src/ATen/EmptyTensor.cpp:54.)\n"}
+,{"stream_name":"stderr","time":1766.945035226,"data":"  x = torch.fft.rfftn(x, norm=self.fft_norm, dim=fft_dims)\n"}
+,{"stream_name":"stderr","time":1802.311395571,"data":"/usr/local/lib/python3.13/dist-packages/torch/_dynamo/variables/functions.py:2202: UserWarning: Dynamo detected a call to a `functools.lru_cache`-wrapped function at 'contract.py:612'. Dynamo ignores the cache wrapper and directly traces the wrapped function. Silent incorrectness is only a *potential* risk, not something we have observed. Enable TORCH_LOGS=+dynamo for a DEBUG stack trace.\n"}
+,{"stream_name":"stderr","time":1802.311431911,"data":"\n"}
+,{"stream_name":"stderr","time":1802.311437966,"data":"This call originates from:\n"}
+,{"stream_name":"stderr","time":1802.311442734,"data":"  File \"/usr/local/lib/python3.13/dist-packages/opt_einsum/contract.py\", line 612, in infer_backend\n"}
+,{"stream_name":"stderr","time":1802.311447781,"data":"    return _infer_backend_class_cached(x.__class__)\n"}
+,{"stream_name":"stderr","time":1802.311452541,"data":"\n"}
+,{"stream_name":"stderr","time":1802.311456926,"data":"  torch._dynamo.utils.warn_once(msg)\n"}
+,{"stream_name":"stderr","time":1802.311461548,"data":"/usr/local/lib/python3.13/dist-packages/torch/_dynamo/variables/functions.py:2082: UserWarning: Dynamo does not know how to trace the builtin `_thread.get_ident.` This function is either a Python builtin (e.g. _warnings.warn) or a third-party C/C++ Python extension (perhaps created with pybind).\n"}
+,{"stream_name":"stderr","time":1802.311482658,"data":"If it is a Python builtin, please file an issue on GitHub so the PyTorch team can add support for it and see the next case for a workaround.\n"}
+,{"stream_name":"stderr","time":1802.311485913,"data":"If it is a third-party C/C++ Python extension, please either wrap it into a PyTorch-understood custom operator (see https://pytorch.org/tutorials/advanced/custom_ops_landing_page.html for more details) or, if it is traceable, use `torch.compiler.allow_in_graph`.\n"}
+,{"stream_name":"stderr","time":1802.311488807,"data":"  torch._dynamo.utils.warn_once(explanation + \"\\n\" + \"\\n\".join(hints))\n"}
+,{"stream_name":"stderr","time":1802.311491589,"data":"\n"}
+,{"stream_name":"stderr","time":1802.311494293,"data":"/usr/local/lib/python3.13/dist-packages/torch/_dynamo/variables/functions.py:2202: UserWarning: Dynamo detected a call to a `functools.lru_cache`-wrapped function at 'contract.py:612'. Dynamo ignores the cache wrapper and directly traces the wrapped function. Silent incorrectness is only a *potential* risk, not something we have observed. Enable TORCH_LOGS=+dynamo for a DEBUG stack trace.\n"}
+,{"stream_name":"stderr","time":1802.311518552,"data":"\n"}
+,{"stream_name":"stderr","time":1802.311522549,"data":"This call originates from:\n"}
+,{"stream_name":"stderr","time":1802.311526726,"data":"  File \"/usr/local/lib/python3.13/dist-packages/opt_einsum/contract.py\", line 612, in infer_backend\n"}
+,{"stream_name":"stderr","time":1802.311531071,"data":"    return _infer_backend_class_cached(x.__class__)\n"}
+,{"stream_name":"stderr","time":1802.311535715,"data":"\n"}
+,{"stream_name":"stderr","time":1802.311539672,"data":"  torch._dynamo.utils.warn_once(msg)\n"}
+,{"stream_name":"stderr","time":1802.311545471,"data":"/usr/local/lib/python3.13/dist-packages/torch/_dynamo/variables/functions.py:2082: UserWarning: Dynamo does not know how to trace the builtin `_thread.get_ident.` This function is either a Python builtin (e.g. _warnings.warn) or a third-party C/C++ Python extension (perhaps created with pybind).\n"}
+,{"stream_name":"stderr","time":1802.311550041,"data":"If it is a Python builtin, please file an issue on GitHub so the PyTorch team can add support for it and see the next case for a workaround.\n"}
+,{"stream_name":"stderr","time":1802.311554076,"data":"If it is a third-party C/C++ Python extension, please either wrap it into a PyTorch-understood custom operator (see https://pytorch.org/tutorials/advanced/custom_ops_landing_page.html for more details) or, if it is traceable, use `torch.compiler.allow_in_graph`.\n"}
+,{"stream_name":"stderr","time":1802.311558448,"data":"  torch._dynamo.utils.warn_once(explanation + \"\\n\" + \"\\n\".join(hints))\n"}
+,{"stream_name":"stderr","time":1808.248051552,"data":"W1124 08:12:23.368000 23 torch/_inductor/utils.py:1731] [2/0] Not enough SMs to use max_autotune_gemm mode\n"}
+,{"stream_name":"stderr","time":1808.248083707,"data":"\n"}
+,{"stream_name":"stderr","time":1808.248088263,"data":"W1124 08:12:23.368000 23 torch/_inductor/utils.py:1731] [2/0] Not enough SMs to use max_autotune_gemm mode\n"}
+,{"stream_name":"stderr","time":1810.553774072,"data":"/usr/local/lib/python3.13/dist-packages/torch/_inductor/lowering.py:2212: UserWarning: Torchinductor does not support code generation for complex operators. Performance may be worse than eager.\n"}
+,{"stream_name":"stderr","time":1810.553808644,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":1810.553812292,"data":"\n"}
+,{"stream_name":"stderr","time":1810.553814687,"data":"/usr/local/lib/python3.13/dist-packages/torch/_inductor/lowering.py:2212: UserWarning: Torchinductor does not support code generation for complex operators. Performance may be worse than eager.\n"}
+,{"stream_name":"stderr","time":1810.553825133,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":1831.366516241,"data":"W1124 08:12:46.491000 23 torch/_dynamo/convert_frame.py:1743] [4/8] torch._dynamo hit config.recompile_limit (8)\n"}
+,{"stream_name":"stderr","time":1831.366553335,"data":"W1124 08:12:46.491000 23 torch/_dynamo/convert_frame.py:1743] [4/8]    function: 'forward_with_postactivation' (/usr/local/lib/python3.13/dist-packages/neuralop/layers/fno_block.py:301)\n"}
+,{"stream_name":"stderr","time":1831.366558203,"data":"W1124 08:12:46.491000 23 torch/_dynamo/convert_frame.py:1743] [4/8]    last reason: 4/7: index == 3  # idx = operator.index(idx)  # nn/modules/container.py:368 in _get_abs_string_index (_dynamo/variables/tensor.py:1951 in evaluate_expr)\n"}
+,{"stream_name":"stderr","time":1831.366563546,"data":"W1124 08:12:46.491000 23 torch/_dynamo/convert_frame.py:1743] [4/8] To log all recompilation reasons, use TORCH_LOGS=\"recompiles\".\n"}
+,{"stream_name":"stderr","time":1831.366567426,"data":"W1124 08:12:46.491000 23 torch/_dynamo/convert_frame.py:1743] [4/8] To diagnose recompilation issues, see https://docs.pytorch.org/docs/main/user_guide/torch_compiler/compile/programming_model.recompilation.html\n"}
+,{"stream_name":"stderr","time":1831.366571285,"data":"\n"}
+,{"stream_name":"stderr","time":1831.36657453,"data":"W1124 08:12:46.491000 23 torch/_dynamo/convert_frame.py:1743] [4/8] torch._dynamo hit config.recompile_limit (8)\n"}
+,{"stream_name":"stderr","time":1831.366578097,"data":"W1124 08:12:46.491000 23 torch/_dynamo/convert_frame.py:1743] [4/8]    function: 'forward_with_postactivation' (/usr/local/lib/python3.13/dist-packages/neuralop/layers/fno_block.py:301)\n"}
+,{"stream_name":"stderr","time":1831.366581908,"data":"W1124 08:12:46.491000 23 torch/_dynamo/convert_frame.py:1743] [4/8]    last reason: 4/7: index == 3  # idx = operator.index(idx)  # nn/modules/container.py:368 in _get_abs_string_index (_dynamo/variables/tensor.py:1951 in evaluate_expr)\n"}
+,{"stream_name":"stderr","time":1831.366587845,"data":"W1124 08:12:46.491000 23 torch/_dynamo/convert_frame.py:1743] [4/8] To log all recompilation reasons, use TORCH_LOGS=\"recompiles\".\n"}
+,{"stream_name":"stderr","time":1831.36659454,"data":"W1124 08:12:46.491000 23 torch/_dynamo/convert_frame.py:1743] [4/8] To diagnose recompilation issues, see https://docs.pytorch.org/docs/main/user_guide/torch_compiler/compile/programming_model.recompilation.html\n"}
+,{"stream_name":"stderr","time":1859.353251371,"data":"/usr/local/lib/python3.13/dist-packages/torch/_dynamo/variables/functions.py:2202: UserWarning: Dynamo detected a call to a `functools.lru_cache`-wrapped function at 'contract.py:612'. Dynamo ignores the cache wrapper and directly traces the wrapped function. Silent incorrectness is only a *potential* risk, not something we have observed. Enable TORCH_LOGS=+dynamo for a DEBUG stack trace.\n"}
+,{"stream_name":"stderr","time":1859.353282764,"data":"\n"}
+,{"stream_name":"stderr","time":1859.353288208,"data":"This call originates from:\n"}
+,{"stream_name":"stderr","time":1859.353308689,"data":"  File \"/usr/local/lib/python3.13/dist-packages/opt_einsum/contract.py\", line 612, in infer_backend\n"}
+,{"stream_name":"stderr","time":1859.353314811,"data":"    return _infer_backend_class_cached(x.__class__)\n"}
+,{"stream_name":"stderr","time":1859.353319616,"data":"\n"}
+,{"stream_name":"stderr","time":1859.353323885,"data":"  torch._dynamo.utils.warn_once(msg)\n"}
+,{"stream_name":"stderr","time":1859.353328271,"data":"/usr/local/lib/python3.13/dist-packages/torch/_dynamo/variables/functions.py:2082: UserWarning: Dynamo does not know how to trace the builtin `_thread.get_ident.` This function is either a Python builtin (e.g. _warnings.warn) or a third-party C/C++ Python extension (perhaps created with pybind).\n"}
+,{"stream_name":"stderr","time":1859.353348,"data":"If it is a Python builtin, please file an issue on GitHub so the PyTorch team can add support for it and see the next case for a workaround.\n"}
+,{"stream_name":"stderr","time":1859.353350994,"data":"If it is a third-party C/C++ Python extension, please either wrap it into a PyTorch-understood custom operator (see https://pytorch.org/tutorials/advanced/custom_ops_landing_page.html for more details) or, if it is traceable, use `torch.compiler.allow_in_graph`.\n"}
+,{"stream_name":"stderr","time":1859.353353659,"data":"  torch._dynamo.utils.warn_once(explanation + \"\\n\" + \"\\n\".join(hints))\n"}
+,{"stream_name":"stderr","time":1859.353356245,"data":"\n"}
+,{"stream_name":"stderr","time":1859.353358433,"data":"/usr/local/lib/python3.13/dist-packages/torch/_dynamo/variables/functions.py:2202: UserWarning: Dynamo detected a call to a `functools.lru_cache`-wrapped function at 'contract.py:612'. Dynamo ignores the cache wrapper and directly traces the wrapped function. Silent incorrectness is only a *potential* risk, not something we have observed. Enable TORCH_LOGS=+dynamo for a DEBUG stack trace.\n"}
+,{"stream_name":"stderr","time":1859.353361298,"data":"\n"}
+,{"stream_name":"stderr","time":1859.353363432,"data":"This call originates from:\n"}
+,{"stream_name":"stderr","time":1859.353365656,"data":"  File \"/usr/local/lib/python3.13/dist-packages/opt_einsum/contract.py\", line 612, in infer_backend\n"}
+,{"stream_name":"stderr","time":1859.353368066,"data":"    return _infer_backend_class_cached(x.__class__)\n"}
+,{"stream_name":"stderr","time":1859.353370429,"data":"\n"}
+,{"stream_name":"stderr","time":1859.353372547,"data":"  torch._dynamo.utils.warn_once(msg)\n"}
+,{"stream_name":"stderr","time":1859.353376409,"data":"/usr/local/lib/python3.13/dist-packages/torch/_dynamo/variables/functions.py:2082: UserWarning: Dynamo does not know how to trace the builtin `_thread.get_ident.` This function is either a Python builtin (e.g. _warnings.warn) or a third-party C/C++ Python extension (perhaps created with pybind).\n"}
+,{"stream_name":"stderr","time":1859.353379132,"data":"If it is a Python builtin, please file an issue on GitHub so the PyTorch team can add support for it and see the next case for a workaround.\n"}
+,{"stream_name":"stderr","time":1859.353381653,"data":"If it is a third-party C/C++ Python extension, please either wrap it into a PyTorch-understood custom operator (see https://pytorch.org/tutorials/advanced/custom_ops_landing_page.html for more details) or, if it is traceable, use `torch.compiler.allow_in_graph`.\n"}
+,{"stream_name":"stderr","time":1859.353384509,"data":"  torch._dynamo.utils.warn_once(explanation + \"\\n\" + \"\\n\".join(hints))\n"}
+,{"stream_name":"stderr","time":1891.206366179,"data":"W1124 08:13:46.326000 23 torch/_dynamo/convert_frame.py:1743] [4/8] torch._dynamo hit config.recompile_limit (8)\n"}
+,{"stream_name":"stderr","time":1891.206397806,"data":"W1124 08:13:46.326000 23 torch/_dynamo/convert_frame.py:1743] [4/8]    function: 'forward_with_postactivation' (/usr/local/lib/python3.13/dist-packages/neuralop/layers/fno_block.py:301)\n"}
+,{"stream_name":"stderr","time":1891.206404691,"data":"W1124 08:13:46.326000 23 torch/_dynamo/convert_frame.py:1743] [4/8]    last reason: 4/7: tensor 'x' dtype mismatch. expected Float, actual Half\n"}
+,{"stream_name":"stderr","time":1891.206409832,"data":"W1124 08:13:46.326000 23 torch/_dynamo/convert_frame.py:1743] [4/8] To log all recompilation reasons, use TORCH_LOGS=\"recompiles\".\n"}
+,{"stream_name":"stderr","time":1891.206414988,"data":"W1124 08:13:46.326000 23 torch/_dynamo/convert_frame.py:1743] [4/8] To diagnose recompilation issues, see https://docs.pytorch.org/docs/main/user_guide/torch_compiler/compile/programming_model.recompilation.html\n"}
+,{"stream_name":"stderr","time":1891.206430257,"data":"\n"}
+,{"stream_name":"stderr","time":1891.206433567,"data":"W1124 08:13:46.326000 23 torch/_dynamo/convert_frame.py:1743] [4/8] torch._dynamo hit config.recompile_limit (8)\n"}
+,{"stream_name":"stderr","time":1891.206437363,"data":"W1124 08:13:46.326000 23 torch/_dynamo/convert_frame.py:1743] [4/8]    function: 'forward_with_postactivation' (/usr/local/lib/python3.13/dist-packages/neuralop/layers/fno_block.py:301)\n"}
+,{"stream_name":"stderr","time":1891.206440882,"data":"W1124 08:13:46.326000 23 torch/_dynamo/convert_frame.py:1743] [4/8]    last reason: 4/7: tensor 'x' dtype mismatch. expected Float, actual Half\n"}
+,{"stream_name":"stderr","time":1891.206444714,"data":"W1124 08:13:46.326000 23 torch/_dynamo/convert_frame.py:1743] [4/8] To log all recompilation reasons, use TORCH_LOGS=\"recompiles\".\n"}
+,{"stream_name":"stderr","time":1891.206448836,"data":"W1124 08:13:46.326000 23 torch/_dynamo/convert_frame.py:1743] [4/8] To diagnose recompilation issues, see https://docs.pytorch.org/docs/main/user_guide/torch_compiler/compile/programming_model.recompilation.html\n"}
+,{"stream_name":"stdout","time":1915.39669339,"data":"[SAVED] /kaggle/working/results/stage5b_fp16.csv\n"}
+,{"stream_name":"stderr","time":1920.746110478,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":1920.746136835,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":1920.913653184,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":1920.913677263,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":1921.705216363,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":1921.808638783,"data":"[NbConvertApp] Writing 275036 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":1924.311666329,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":1924.888390754,"data":"[NbConvertApp] Writing 513289 bytes to __results__.html\n"}
+]

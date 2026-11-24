@@ -35,8 +35,8 @@ and member disagreement ranks test samples by error (Spearman \SpearLo--\SpearHi
 Using that disagreement to choose new training samples (active learning) gave \ALgapLo--\ALgapHi\% \emph{higher}
 test error than random selection at every round.
 We also wrote a pseudo-spectral solver that reproduces the dataset to a relative error of \SolverMean{}; on the same
-GPU, a coarse $32^2$ solve matches the FNO's accuracy about \SolThirtyTwoSpeed$\times$ faster, so the surrogate offers no
-speedup at matched accuracy for this problem.
+GPU, a coarse $32^2$ solve matches the FNO's accuracy about \SolThirtyTwoSpeed$\times$ faster (still \FastGap$\times$ with
+half-precision, compiled FNO inference), so the surrogate offers no speedup at matched accuracy for this problem.
 \end{abstract}
 
 % ======================================================================
@@ -289,7 +289,12 @@ faster (Table~\ref{tab:speed}, Fig.~\ref{fig:speed}). A $48^2$ solve is four tim
 still faster. The FNO is \SolOneTwentyEightSpeed$\times$ faster than the $128^2$ solve, but that solve is
 three orders of magnitude more accurate. Counting training (\TrainMin\,min) and generating 8{,}000 training samples
 (\GenMin\,min), the FNO would need about \BreakEvenFull{} queries to pay off against the $128^2$ solver, and it never
-pays off against a solver of matched accuracy. This holds for this smooth, moderately viscous flow over a short
+pays off against a solver of matched accuracy.
+
+Faster FNO inference does not change this. Re-training the seed-0 FNO and timing the same weights in one session,
+half precision (\texttt{torch.autocast}, float16) is \AmpSpeedup$\times$ faster than float32 (\FastFPms\,ms),
+\texttt{torch.compile} \CompileSpeedup$\times$, and both together \FastSpeedup$\times$ (\FastMs\,ms per sample), with
+unchanged test error (\FastRel). The $32^2$ solve remains \FastGap$\times$ faster. This holds for this smooth, moderately viscous flow over a short
 horizon; harder regimes (higher Reynolds number, longer horizons) need finer grids and are where surrogates usually
 gain.
 
@@ -303,7 +308,8 @@ scale; the low-rank results may improve with tuning.
 activation checkpointing would make optimizer state a larger share; we did not test them.
 \item Ensembles of $K=3$ only. Active learning was tested in its simplest form (greedy top-spread batches, one run
 per strategy); batch-diversity or calibrated variants were not tried. Multi-step rollout was not run.
-\item Timings are for one GPU type (T4) and float32; the FNO was not tried in lower precision.
+\item Timings are for one GPU type (T4). The solver was timed in float32 only; the FNO also in float16 and compiled
+(Stage 5b), the U-Net in float32 only.
 \item The gradient-rank study comes from a single earlier training run.
 \end{itemize}
 

@@ -28,6 +28,7 @@ Main results table: `results/FINAL.csv`.
 | 3 K = 3 ensembles from saved test predictions | `stage3_ensembles` | local CPU |
 | 4 Solver validation against the dataset | `stage4_solver_validation` | local CPU |
 | 5 Solver cost-accuracy frontier and surrogate inference timing | `stage5_timing` | Kaggle T4 |
+| 5b FNO inference in half precision and compiled (same trained model) | `stage5b_fp16` | Kaggle T4 |
 | 7 Active learning: uncertainty vs random selection (1,000 → 3,000 samples, K = 3) | `stage7_al_uncertainty`, `stage7_al_random` | Kaggle T4 |
 | 8 Break-even, final tables and figures | `tools/make_final.py` | local |
 

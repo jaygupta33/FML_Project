@@ -29,6 +29,7 @@ and need no GPU. Run them from the repository root.
 | 3 | $K=3$ ensembles from saved test predictions | `stage3_ensembles` | local CPU |
 | 4 | our solver against the dataset | `stage4_solver_validation` | local CPU |
 | 5 | solver cost-accuracy frontier vs surrogate inference time | `stage5_timing` | Kaggle T4 |
+| 5b | FNO inference in half precision and compiled | `stage5b_fp16` | Kaggle T4 |
 | 7 | active learning: uncertainty vs random selection | `stage7_al_uncertainty`, `stage7_al_random` | Kaggle T4 |
 
 Unless stated otherwise, accuracy is relative $L_2$ error on the 2,000 test samples, in raw units.
@@ -202,6 +203,29 @@ best[["what", "precision", "batch", "ms_per_sample", "test_rel_L2_mean"]].round(
   that is already more accurate (0.0326) takes 0.30 ms. That is about 12× faster than the FNO.
 - **Against the high-accuracy solve it is.** The FNO is 4.4× faster than a $128^2$ solve, but needs about 145,000
   queries to repay its training time.
+"""),
+
+    # ---------------------------------------------------------------- Stage 5b
+    ("md", "## Stage 5b: Faster FNO Inference (Half Precision, Compilation)"),
+    ("md", r"""
+Can a faster FNO close the gap? The seed-0 FNO was re-trained with the Stage 1A protocol, and the same weights
+were timed and evaluated in four inference modes in one session on a T4: float32, half precision
+(`torch.autocast`, float16), `torch.compile`, and both. Notebook: `stage5b_fp16`.
+"""),
+    ("code", '''
+fp = pd.read_csv(RES / "stage5b_fp16.csv").dropna(subset=["sec_per_sample"])
+fb = fp.loc[fp.groupby("mode")["sec_per_sample"].idxmin()].copy()
+fb["ms_per_sample"] = fb.sec_per_sample * 1e3
+fb["speedup vs float32"] = fb.loc[fb["mode"] == "float32", "ms_per_sample"].iloc[0] / fb.ms_per_sample
+fb.sort_values("ms_per_sample")[["mode", "batch", "ms_per_sample", "speedup vs float32", "test_rel_L2"]].round(5).reset_index(drop=True)
+'''),
+    ("md", r"""
+- **Accuracy is unchanged in every mode** (test error 0.0378). The re-trained model matches the Stage 1A seed-0
+  run (0.03776 vs 0.03774).
+- **Speed-ups are modest.** Half precision alone is 1.11× faster than float32, compilation alone 1.15×, and both
+  together 1.34× (2.55 ms per sample).
+- **The conclusion of Stage 5 stands.** The $32^2$ solve (0.30 ms, error 0.033) is still 8.6× faster than the
+  fastest FNO mode.
 """),
 
     # ---------------------------------------------------------------- Stage 7

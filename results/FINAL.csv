@@ -81,6 +81,14 @@ stage,item,metric,value,unit,n_seeds,source
 5 timing,solver 64^2 (float32),test rel L2 vs dataset (64 samples),0.002292376194686323,,1.0,stage5_timing.csv
 5 timing,solver 96^2 (float32),"time per sample, best batch size, Tesla T4",5.767775874999437,ms,1.0,stage5_timing.csv
 5 timing,solver 96^2 (float32),test rel L2 vs dataset (64 samples),0.0003000903014111371,,1.0,stage5_timing.csv
+5 timing,FNO autocast fp16,"time per sample, best batch size, Tesla T4 (Stage 5b session)",3.081295131249817,ms,1.0,stage5b_fp16.csv
+5 timing,FNO autocast fp16,"test rel L2 (2,000 samples, retrained seed 0)",0.037762070359482966,,1.0,stage5b_fp16.csv
+5 timing,FNO compile + autocast fp16,"time per sample, best batch size, Tesla T4 (Stage 5b session)",2.5510204718756313,ms,1.0,stage5b_fp16.csv
+5 timing,FNO compile + autocast fp16,"test rel L2 (2,000 samples, retrained seed 0)",0.03777101938469333,,1.0,stage5b_fp16.csv
+5 timing,FNO compile float32,"time per sample, best batch size, Tesla T4 (Stage 5b session)",2.9612989374996346,ms,1.0,stage5b_fp16.csv
+5 timing,FNO compile float32,"test rel L2 (2,000 samples, retrained seed 0)",0.03776179990240425,,1.0,stage5b_fp16.csv
+5 timing,FNO float32,"time per sample, best batch size, Tesla T4 (Stage 5b session)",3.4098980062495343,ms,1.0,stage5b_fp16.csv
+5 timing,FNO float32,"test rel L2 (2,000 samples, retrained seed 0)",0.03776179956129489,,1.0,stage5b_fp16.csv
 7 active learning,"uncertainty selection, n=1000","ensemble test rel L2 (K=3, GaLore r=16)",0.09226248413324356,,3.0,stage7_uncertainty.csv
 7 active learning,"uncertainty selection, n=1000",mean member test rel L2,0.10418447852134705,,3.0,stage7_uncertainty.csv
 7 active learning,"uncertainty selection, n=1500","ensemble test rel L2 (K=3, GaLore r=16)",0.07709486782550812,,3.0,stage7_uncertainty.csv

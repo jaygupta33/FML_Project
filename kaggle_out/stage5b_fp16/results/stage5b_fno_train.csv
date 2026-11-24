@@ -1,0 +1,2 @@
+label,loss,params,param_MB,opt_state_MB,peak_gpu_MB,sec_per_epoch,best_epoch,best_val_loss,test_loss,test_mse_norm,test_rel_L2,run,optimizer,lr,seed,epochs,batch,torch,python,gpu
+FNO Adam seed 0,MSELoss,2410177,19.077892,38.155944,3992.311808,76.68565613031387,18,0.001518657684326172,0.0014926376175135375,0.0014926376175135375,0.037761799698095844,FNO,Adam,0.001,0,20,32,2.11.0+cu130,3.13.16,Tesla T4

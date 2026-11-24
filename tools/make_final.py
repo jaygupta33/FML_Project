@@ -95,6 +95,16 @@ for _, r in t256.iterrows():
     if not np.isnan(r.test_rel_L2_mean):
         add("5 timing", f"{r.what} ({r.precision})", "test rel L2 vs dataset (64 samples)", r.test_rel_L2_mean, "", 1, "stage5_timing.csv")
 
+# Stage 5b: FNO inference modes (same trained FNO, same session, Tesla T4)
+fp = pd.read_csv(R / "stage5b_fp16.csv").dropna(subset=["sec_per_sample"])
+fp_best = fp.loc[fp.groupby("mode")["sec_per_sample"].idxmin()].set_index("mode")
+fp32_ms = fp_best.loc["float32", "sec_per_sample"] * 1e3
+fast_mode = fp_best["sec_per_sample"].idxmin()
+fast_ms, fast_rel = fp_best.loc[fast_mode, "sec_per_sample"] * 1e3, fp_best.loc[fast_mode, "test_rel_L2"]
+for mode, r in fp_best.iterrows():
+    add("5 timing", f"FNO {mode}", "time per sample, best batch size, Tesla T4 (Stage 5b session)", r.sec_per_sample * 1e3, "ms", 1, "stage5b_fp16.csv")
+    add("5 timing", f"FNO {mode}", "test rel L2 (2,000 samples, retrained seed 0)", r.test_rel_L2, "", 1, "stage5b_fp16.csv")
+
 # Stage 7 active learning: included once both strategies have results
 AL_FILES = [R / f"stage7_{s}.csv" for s in ("uncertainty", "random")]
 al = pd.concat([pd.read_csv(p) for p in AL_FILES], ignore_index=True) if all(p.exists() for p in AL_FILES) else None
@@ -171,6 +181,7 @@ ax.plot(3 * fno_t * 1e3, opt.loc["Adam", "ensemble rel L2"], marker="D", ms=7, c
         label="FNO + Adam, K=3 ensemble")
 u = ctl[ctl.label.str.contains("spectral")].test_rel_L2.iloc[0]
 ax.plot(unet_t * 1e3, u, marker="s", ms=7, color=C["U-Net"], ls="none", mec="white", label="U-Net (spectral loss)")
+ax.plot(fast_ms, fast_rel, marker="P", ms=8, color=C["Adam"], ls="none", mec="white", label=f"FNO, {fast_mode} (seed 0)")
 ax.set(xscale="log", yscale="log", xlabel="time per sample (ms, best batch size, Tesla T4)", ylabel="test relative $L^2$ vs dataset")
 ax.legend(fontsize=7.5, loc="lower left")
 fig.tight_layout(); fig.savefig(F / "fig_speed_accuracy.pdf"); fig.savefig(F / "fig_speed_accuracy.png"); plt.close(fig)
@@ -263,6 +274,7 @@ for _, r in be.iterrows():
     lines.append(f"solver ${r.solver.split(',')[0]}$, $\\Delta t={r.solver.split('dt ')[1]}$ & {r['solver ms/sample']:.2f} & "
                  f"{r['solver rel L2']:.1e} & {r['speedup (solver/FNO)']:.2f}$\\times$ \\\\")
 lines.append(f"FNO (single, Adam) & {fno_ms:.2f} & {opt.loc['Adam', 'test_rel_L2_mean']:.4f} & -- \\\\")
+lines.append(f"FNO, {fast_mode.replace('+', 'and')} (seed 0) & {fast_ms:.2f} & {fast_rel:.4f} & -- \\\\")
 lines.append(f"FNO ($K{{=}}3$ ensemble) & {3 * fno_ms:.2f} & {opt.loc['Adam', 'ensemble rel L2']:.4f} & -- \\\\")
 lines += [r"\bottomrule", r"\end{tabular}"]
 (G / "tab_speed.tex").write_text("\n".join(lines))
@@ -314,6 +326,10 @@ M = {
     "SpecLo": f"{spec[spec.k <= 31].ratio.min():.2f}", "SpecHi": f"{spec[spec.k <= 31].ratio.max():.2f}",
     "Grid256": f"{conv[(conv.grid == 256) & (conv.method == 'cn_heun')]['vs dataset y'].iloc[0]:.1e}",
     "FNOms": f"{fno_ms:.2f}",
+    "FastMs": f"{fast_ms:.2f}", "FastRel": f"{fast_rel:.4f}", "FastSpeedup": f"{fp32_ms / fast_ms:.2f}",
+    "FastFPms": f"{fp32_ms:.2f}", "FastGap": f"{fast_ms / be[be.solver.str.startswith('32^2')]['solver ms/sample'].iloc[0]:.1f}",
+    "AmpSpeedup": f"{fp32_ms / (fp_best.loc['autocast fp16', 'sec_per_sample'] * 1e3):.2f}",
+    "CompileSpeedup": f"{fp32_ms / (fp_best.loc['compile float32', 'sec_per_sample'] * 1e3):.2f}",
     "SolThirtyTwoms": f"{be[be.solver.str.startswith('32^2')]['solver ms/sample'].iloc[0]:.2f}",
     "SolThirtyTwoRel": f"{be[be.solver.str.startswith('32^2')]['solver rel L2'].iloc[0]:.4f}",
     "SolThirtyTwoSpeed": f"{1/be[be.solver.str.startswith('32^2')]['speedup (solver/FNO)'].iloc[0]:.0f}",
