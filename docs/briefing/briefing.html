@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Project Briefing</title>
+<style>
+  :root {
+    --ink: #1a1a19; --ink2: #52514e; --muted: #7a7974; --rule: #dcdad5; --wash: #f4f3f0;
+    --accent: #6250d6; --adam: #2a78d6; --galore: #eb6834; --adaptive: #1baf7a; --bad: #b4372f;
+  }
+  @page { size: A4; margin: 16mm 16mm 18mm 16mm; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: var(--ink); background: #fff;
+         font-size: 10.2pt; line-height: 1.45; margin: 0; }
+  h1 { font-size: 22pt; line-height: 1.15; margin: 0 0 4pt; letter-spacing: -0.2pt; }
+  h2 { font-size: 14.5pt; margin: 18pt 0 6pt; padding-bottom: 3pt; border-bottom: 1.5pt solid var(--ink); }
+  h3 { font-size: 11.2pt; margin: 12pt 0 4pt; }
+  p { margin: 0 0 6pt; }
+  ul, ol { margin: 0 0 6pt; padding-left: 16pt; }
+  li { margin: 0 0 2.5pt; }
+  .break { break-before: page; }
+  h2, h3 { break-after: avoid; }
+  .keep { break-inside: avoid; }
+  .sub { color: var(--ink2); font-size: 11pt; margin-bottom: 10pt; }
+  .meta { color: var(--muted); font-size: 8.8pt; margin-bottom: 14pt; }
+  .tag { display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: .4pt; text-transform: uppercase;
+         color: var(--accent); margin-bottom: 2pt; }
+  table { border-collapse: collapse; width: 100%; margin: 4pt 0 8pt; font-size: 9.2pt; break-inside: avoid; }
+  th, td { text-align: left; padding: 3.5pt 6pt; border-bottom: 0.6pt solid var(--rule); vertical-align: top; }
+  th { font-weight: 700; border-bottom: 1pt solid var(--ink2); background: var(--wash); }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .box { border: 1pt solid var(--rule); border-left: 4pt solid var(--accent); background: var(--wash);
+         padding: 7pt 10pt; margin: 6pt 0 10pt; break-inside: avoid; }
+  .box.neg { border-left-color: var(--bad); }
+  .box b.h { display: block; font-size: 8.4pt; letter-spacing: .4pt; text-transform: uppercase; color: var(--ink2); margin-bottom: 2pt; }
+  .slide { border: 1pt dashed var(--accent); padding: 5pt 9pt; margin: 6pt 0 10pt; break-inside: avoid; font-size: 9.6pt; }
+  .slide::before { content: "FOR THE SLIDE"; display: block; font-size: 7.6pt; font-weight: 700; letter-spacing: .5pt; color: var(--accent); }
+  figure { margin: 6pt 0 10pt; break-inside: avoid; text-align: center; }
+  figure img { max-width: 100%; border: 0.5pt solid var(--rule); }
+  figcaption { font-size: 8.6pt; color: var(--ink2); text-align: left; margin-top: 3pt; }
+  figcaption code { font-size: 8pt; }
+  code { font-family: Menlo, Consolas, monospace; font-size: 8.6pt; background: var(--wash); padding: 0 2pt; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8pt 14pt; }
+  .card { border: 0.8pt solid var(--rule); padding: 6pt 8pt; break-inside: avoid; }
+  .card b { display: block; margin-bottom: 1pt; }
+  .five li { margin-bottom: 4pt; }
+  .pos { color: #13804f; font-weight: 700; } .negt { color: var(--bad); font-weight: 700; } .mix { color: #a8590f; font-weight: 700; }
+  .small { font-size: 8.8pt; color: var(--ink2); }
+</style>
+</head>
+<body>
+
+<div class="tag">FML course project · briefing for the presentation</div>
+<h1>Rank-Adaptive Optimization for Memory-Efficient Neural Surrogates of Navier-Stokes Flow</h1>
+<div class="sub">What we set out to do, what we ran, what we found, and how to present it</div>
+<div class="meta">Prepared 24 Nov 2026 from the project repository. Every number here comes from the saved result files (<code>results/</code>); figure files are named in each caption so they can be put straight on slides.</div>
+
+<h2>The project in one minute</h2>
+<p>Simulating fluid flow means solving the <b>Navier-Stokes equations</b> numerically, which is accurate but slow. A <b>neural surrogate</b> is a network trained to imitate the solver: it takes the same input and predicts the result in one forward pass. To trust a surrogate we also want to know <i>when it is unsure</i>; the standard way is to train several networks (an <b>ensemble</b>) and look at how much they disagree. That multiplies training memory, and a large part of training memory is the <b>optimizer's state</b> (Adam stores two extra numbers per weight).</p>
+<p>Our idea: compress the optimizer's state with a <b>low-rank projection</b> (the GaLore method), and go one step further by letting the rank be chosen <b>automatically per layer and over time</b> (adaptive rank). Cheaper training → affordable ensembles → uncertainty estimates → use the uncertainty to decide which simulations to run next (<b>active learning</b>). Finally, compare the surrogate's speed against a real solver.</p>
+
+<div class="box"><b class="h">Five results to remember</b>
+<ol class="five">
+  <li><span class="pos">Works:</span> low-rank Adam cuts the optimizer's memory <b>4–14×</b> for a <b>6–28%</b> increase in test error.</li>
+  <li><span class="negt">Did not work:</span> letting the rank adapt <b>did not beat</b> simply picking a good fixed rank, once its peak memory is counted.</li>
+  <li><span class="mix">Small in practice:</span> total GPU memory dropped only <b>~2%</b>, because the optimizer state is tiny next to the network's activations for this model.</li>
+  <li><span class="pos">Works:</span> 3-model ensembles are <b>14–16% more accurate</b>, and their disagreement points to harder samples, but it underestimates the real error (about 0.75×).</li>
+  <li><span class="negt">Did not work:</span> choosing new training data by ensemble disagreement was <b>4–6% worse than random</b> choice; and at equal accuracy our FNO is <b>~12× slower</b> than a coarse solver run.</li>
+</ol></div>
+<p class="small">Negative results are reported as they are. They are findings, not failures of the work: each one was tested with a fair control.</p>
+
+<!-- ======================================================= -->
+<h2 class="break">1. Key ideas, in plain language</h2>
+<div class="grid2">
+  <div class="card"><b>Navier-Stokes equations</b>The equations of fluid motion. Here: 2-D flow on a square, periodic grid (what leaves one side re-enters the other), 128 × 128 points.</div>
+  <div class="card"><b>Vorticity ω</b>How much the fluid is spinning at each point. Our target field.</div>
+  <div class="card"><b>Forcing f</b>A fixed pattern of pushes applied to the fluid. Our input field.</div>
+  <div class="card"><b>Neural surrogate</b>A network trained on solver input/output pairs so it can predict the output without running the solver.</div>
+  <div class="card"><b>FNO (Fourier Neural Operator)</b>A network that works in frequency space: it mixes the lowest 16×16 Fourier modes of the field with learned weights. Our main model (2.4 M weights).</div>
+  <div class="card"><b>U-Net</b>A convolutional network that shrinks the image step by step and grows it back. Our second model (2.1 M weights).</div>
+  <div class="card"><b>Adam optimizer state</b>Adam keeps a running mean and a running variance for every weight, so its memory is 2× the model's. For the FNO: 38 MB of state for 19 MB of weights.</div>
+  <div class="card"><b>GaLore / low-rank Adam</b>Each weight's gradient is a matrix G. Project it onto its r most important directions (P), and keep Adam's state only for that small projected matrix. Rank r controls memory.</div>
+  <div class="card"><b>Adaptive rank (our variant)</b>Instead of one fixed r, every 200 steps each layer picks the smallest r that keeps a share τ (e.g. 99.9%) of its gradient energy.</div>
+  <div class="card"><b>Ensemble &amp; spread</b>Train K = 3 copies with different random seeds; average their predictions. Their disagreement (spread) is the uncertainty estimate.</div>
+  <div class="card"><b>Active learning</b>Start with few labelled samples; repeatedly add the ones the model is most unsure about, instead of random ones.</div>
+  <div class="card"><b>Relative L² error</b>Our accuracy measure: size of the error divided by size of the true field. 0.036 means about 3.6% error. Lower is better.</div>
+</div>
+
+<h3>The objective, as stated at the start</h3>
+<table>
+  <tr><th>We measure</th><th>The question</th></tr>
+  <tr><td>Memory</td><td>How much optimizer memory does low-rank / adaptive-rank training save?</td></tr>
+  <tr><td>Accuracy</td><td>Does the surrogate stay accurate when trained that way?</td></tr>
+  <tr><td>Speed</td><td>Does training get slower?</td></tr>
+  <tr><td>Uncertainty</td><td>Do ensembles give useful uncertainty, and can it choose new training data?</td></tr>
+  <tr><td>Surrogate vs solver</td><td>Is the network actually faster than solving the equations?</td></tr>
+</table>
+
+<!-- ======================================================= -->
+<h2>2. The data</h2>
+<p>A public benchmark dataset (Zenodo record 12825163, from the paper arXiv 2310.00120): <b>10,000 training</b> and <b>2,000 test</b> pairs, each a 128 × 128 grid.</p>
+<ul>
+  <li><b>Input x</b> = a random forcing pattern f.</li>
+  <li><b>Output y</b> = the vorticity ω at time T = 5, starting from still fluid, viscosity ν = 1/500.</li>
+  <li>We split the 10,000 into <b>8,000 train / 2,000 validation</b> (fixed seed), and standardise both fields using training statistics.</li>
+  <li>We <b>proved</b> this reading of the data ourselves: our own solver, started from rest with x as the forcing, reproduces y to 0.003% error (Stage 4).</li>
+</ul>
+<figure><img src="../../figures/data_samples.png" style="width:100%">
+<figcaption>Six training samples. Top: forcing x (input). Bottom: vorticity at T = 5 (output the network must predict). File: <code>figures/data_samples.png</code></figcaption></figure>
+
+<!-- ======================================================= -->
+<h2 class="break">3. How the work was organised</h2>
+<p>The work ran in stages, each answering one question. GPU stages ran on Kaggle (Tesla T4); the rest ran locally. Each stage has its own notebook in <code>notebooks/</code>, and all results are also collected in the main notebook <code>navier-stokes.ipynb</code> (Part 2).</p>
+<table>
+  <tr><th>Stage</th><th>Question</th><th>Short answer</th></tr>
+  <tr><td>0 Gradient study</td><td>Are the gradients actually low rank?</td><td class="pos">Yes, strongly</td></tr>
+  <tr><td>1 Baselines</td><td>How good are plain FNO and U-Net?</td><td>FNO best: 3.6% error</td></tr>
+  <tr><td>2 Optimizers</td><td>Low-rank and adaptive-rank vs Adam?</td><td class="mix">Memory 4–14× smaller, error +6–28%; adaptive no better than fixed</td></tr>
+  <tr><td>3 Ensembles</td><td>Do 3-model ensembles help, and is their spread useful?</td><td class="pos">14–16% more accurate; spread informative but too small</td></tr>
+  <tr><td>4 Solver check</td><td>Can we reproduce the dataset with our own solver?</td><td class="pos">Yes, to 0.003%</td></tr>
+  <tr><td>5 Speed</td><td>Is the surrogate faster than the solver?</td><td class="negt">Not at equal accuracy</td></tr>
+  <tr><td>7 Active learning</td><td>Does picking data by uncertainty beat random?</td><td class="negt">No, 4–6% worse</td></tr>
+  <tr><td>6 Rollout</td><td>Step-by-step prediction over time</td><td class="small">Not done (out of time)</td></tr>
+</table>
+<p class="small">All comparisons are fair by construction: same data split, same epochs, same batch size (32), same learning rate (10⁻³), several random seeds where it matters, and errors always measured on the untouched test set.</p>
+
+<!-- ======================================================= -->
+<h2>4. Results, stage by stage</h2>
+
+<h3>Stage 0: Are the gradients low rank? (the motivation)</h3>
+<p>We trained each model for 3,000 steps and measured, every 100 steps, how many singular directions of each layer's gradient are needed to hold 95% of its energy.</p>
+<ul>
+  <li>In a typical layer, <b>2–7%</b> of the directions hold 95% of the energy. Even the hardest layer needs at most ~11%.</li>
+  <li>Layers differ a lot: the most demanding FNO layer needs ~3.5× the share of the easiest; in the U-Net ~18×. That is the argument for <b>per-layer</b> rank.</li>
+  <li>Over time the needed rank of the FNO stayed roughly flat, so the case for changing rank <b>over time</b> was weaker from the start.</li>
+</ul>
+<figure><img src="../../figures/gradient_rank_per_layer.png" style="width:82%">
+<figcaption>Each dot is one weight tensor: share of its full rank needed for 95% of the gradient energy (black bar = median). Dots at 1.0 are tiny tensors (biases etc.) that cannot be compressed and were excluded from the numbers above. File: <code>figures/gradient_rank_per_layer.png</code></figcaption></figure>
+<div class="slide">Gradients are highly compressible: 95% of the information sits in a few percent of the directions, and different layers need different amounts. This is why low-rank optimizers can work.</div>
+
+<h3 class="break">Stage 1: Baselines</h3>
+<table>
+  <tr><th>Model</th><th>Training</th><th class="n">Test error (rel. L²)</th></tr>
+  <tr><td><b>FNO</b>, Adam</td><td>3 seeds, 20 epochs</td><td class="n"><b>0.0364 ± 0.0019</b></td></tr>
+  <tr><td>U-Net, Adam, plain MSE loss</td><td>best of 3 learning rates</td><td class="n">0.0555</td></tr>
+  <tr><td>U-Net, Adam, spectral loss</td><td>same learning rate</td><td class="n">0.0516</td></tr>
+</table>
+<ul>
+  <li>The <b>FNO is the strongest model</b>, so it is used for all later experiments.</li>
+  <li>The <b>spectral loss</b> adds a penalty on errors at fine scales (high frequencies). For the U-Net it halved the mid-frequency error and cut spurious fine-scale noise from 34.5× to 3.8× the true energy there. The overall gain (7%) is from one seed only, so it is not established.</li>
+  <li>An earlier U-Net run had failed to train; re-running it properly with a learning-rate sweep fixed that. Worth one sentence on a slide as an example of checking a surprising result.</li>
+</ul>
+<figure><img src="../../figures/final/fig_unet_bands.png" style="width:62%">
+<figcaption>U-Net error by frequency band (error energy / true energy), plain loss vs spectral loss. File: <code>figures/final/fig_unet_bands.png</code></figcaption></figure>
+
+<h3 class="break">Stage 2: Low-rank and adaptive-rank optimizers (the main experiment)</h3>
+<p>We implemented our own <b>low-rank Adam</b> (<code>optim/lowrank_adam.py</code>), which handles the FNO's complex-valued Fourier weights. At full rank it reproduces standard Adam exactly (checked by unit tests, 37 tests in total). We first screened 7 settings for 10 epochs, then ran 5 finalists for 20 epochs × 3 seeds each.</p>
+<table>
+  <tr><th>Optimizer</th><th class="n">Test error</th><th class="n">Optimizer memory (MB)</th><th class="n">vs Adam</th><th class="n">Peak GPU (MB)</th></tr>
+  <tr><td>Adam (reference)</td><td class="n">0.0364 ± 0.0019</td><td class="n">38.2</td><td class="n">1×</td><td class="n">4,043</td></tr>
+  <tr><td>GaLore, fixed r = 16</td><td class="n">0.0386 ± 0.0008</td><td class="n">9.9</td><td class="n">3.9× less</td><td class="n">3,966</td></tr>
+  <tr><td>Adaptive, τ = 0.999</td><td class="n">0.0388 ± 0.0003</td><td class="n">13.7 (peak)</td><td class="n">2.8× less</td><td class="n">3,968</td></tr>
+  <tr><td>GaLore, fixed r = 8</td><td class="n">0.0424 ± 0.0006</td><td class="n">5.1</td><td class="n">7.4× less</td><td class="n">3,959</td></tr>
+  <tr><td>Adaptive, τ = 0.99</td><td class="n">0.0454 ± 0.0013</td><td class="n">4.6 (peak)</td><td class="n">8.4× less</td><td class="n">3,958</td></tr>
+  <tr><td>GaLore, fixed r = 4</td><td class="n">0.0467 ± 0.0009</td><td class="n">2.8</td><td class="n">13.8× less</td><td class="n">3,956</td></tr>
+</table>
+<ul>
+  <li><b>The trade-off is smooth:</b> less memory costs some accuracy, from +6% (r = 16) to +28% (r = 4).</li>
+  <li><b>Adaptive rank does not win.</b> Its memory changes during training, and what matters is the <i>peak</i>. τ = 0.999 needs 13.7 MB at peak for the same accuracy that fixed r = 16 gets with 9.9 MB. τ = 0.99 is less accurate than fixed r = 8 at similar memory.</li>
+  <li><b>Peak GPU memory barely changes (~2%).</b> Weights plus optimizer state are under 60 MB of a ~4 GB peak; the rest is the network's intermediate activations. For this model, the optimizer is simply not where the memory goes.</li>
+  <li>Training speed is the same within 3% for all optimizers.</li>
+</ul>
+<figure><img src="../../figures/final/fig_accuracy_vs_state.png" style="width:72%">
+<figcaption>Accuracy vs optimizer memory (log scale), mean ± std over 3 seeds. For adaptive rank, the marker is its end-of-training memory and the bar extends to its peak. Lower-left is better. File: <code>figures/final/fig_accuracy_vs_state.png</code></figcaption></figure>
+<figure><img src="../../figures/final/fig_adaptive_rank.png" style="width:72%">
+<figcaption>What the adaptive optimizer chose: average rank over training. τ = 0.999 rises to ~19 in epoch 2, then settles near 10. Dotted lines are the fixed ranks. File: <code>figures/final/fig_adaptive_rank.png</code></figcaption></figure>
+<div class="slide">Low-rank Adam shrinks optimizer memory up to 14× for a moderate accuracy cost. Adapting the rank automatically sounds smarter, but at the same peak memory it is no better than a well-chosen fixed rank. And for this model the optimizer is only ~1% of GPU memory, so the total saving is small.</div>
+<p class="small">Also available: <code>figures/final/fig_val_curves.png</code> (validation error per epoch for all optimizers).</p>
+
+<h3 class="break">Stage 3: Ensembles and uncertainty</h3>
+<p>For each optimizer, the three seeds were combined into an ensemble: average the three predictions, and use their disagreement (spread) as uncertainty.</p>
+<table>
+  <tr><th>Optimizer</th><th class="n">Single model</th><th class="n">3-model ensemble</th><th class="n">Gain</th><th class="n">Spread / error</th><th class="n">Rank correlation</th></tr>
+  <tr><td>Adam</td><td class="n">0.0364</td><td class="n">0.0310</td><td class="n">15%</td><td class="n">0.75</td><td class="n">0.55</td></tr>
+  <tr><td>GaLore r = 16</td><td class="n">0.0386</td><td class="n">0.0333</td><td class="n">14%</td><td class="n">0.70</td><td class="n">0.55</td></tr>
+  <tr><td>Adaptive τ = 0.999</td><td class="n">0.0388</td><td class="n">0.0331</td><td class="n">15%</td><td class="n">0.74</td><td class="n">0.58</td></tr>
+  <tr><td>GaLore r = 4</td><td class="n">0.0467</td><td class="n">0.0394</td><td class="n">16%</td><td class="n">0.78</td><td class="n">0.66</td></tr>
+</table>
+<ul>
+  <li>Every ensemble is <b>14–16% more accurate</b> than its average member.</li>
+  <li><b>Spread ranks the samples sensibly:</b> where the models disagree more, the error is usually larger (Spearman rank correlation 0.55–0.66).</li>
+  <li><b>But the spread is too small</b>: on average only 0.70–0.78 of the actual error. The ensemble is over-confident.</li>
+  <li>Low-rank training makes ensembles cheaper: three r = 16 models need 30 MB of optimizer state vs 114 MB for three Adam models.</li>
+</ul>
+<figure><img src="../../figures/final/fig_spread_error.png" style="width:78%">
+<figcaption>Each dot is one test sample: ensemble spread (x) vs actual error (y). Points above the dashed line are where the error exceeds the spread, which is most of them. File: <code>figures/final/fig_spread_error.png</code></figcaption></figure>
+
+<h3 class="break">Stage 7: Active learning (uncertainty vs random)</h3>
+<p>Can the ensemble's disagreement pick the most useful new training samples? Setup: start from 1,000 random training samples, train a 3-model ensemble (low-rank Adam, r = 16), add 500 more samples, retrain, repeat up to 3,000. One run picks the 500 samples with the largest spread; the control run picks 500 at random. Everything else is identical. The 8,000 training samples already have answers, so "running a simulation" just means revealing a sample's answer.</p>
+<table>
+  <tr><th class="n">Labelled samples</th><th class="n">Random selection</th><th class="n">Uncertainty selection</th><th class="n">Difference</th></tr>
+  <tr><td class="n">1,000 (shared start)</td><td class="n">0.0923</td><td class="n">0.0923</td><td class="n">0%</td></tr>
+  <tr><td class="n">1,500</td><td class="n">0.0726</td><td class="n">0.0771</td><td class="n negt">+6.2%</td></tr>
+  <tr><td class="n">2,000</td><td class="n">0.0607</td><td class="n">0.0645</td><td class="n negt">+6.2%</td></tr>
+  <tr><td class="n">2,500</td><td class="n">0.0554</td><td class="n">0.0577</td><td class="n negt">+4.1%</td></tr>
+  <tr><td class="n">3,000</td><td class="n">0.0497</td><td class="n">0.0517</td><td class="n negt">+4.1%</td></tr>
+</table>
+<ul>
+  <li><b>Uncertainty selection was worse than random at every round</b>, by 4–6% (ensemble test error; higher is worse).</li>
+  <li>The selection itself worked as designed: the chosen samples had 1.3–1.7× the average spread of the pool.</li>
+  <li>A side effect we measured: after training on high-spread samples, the ensemble's spread stopped tracking its test error (rank correlation fell from 0.56 to 0.19–0.26, while it stayed 0.63–0.65 with random selection). A plausible reading is that the chosen samples are unusual, so the training set no longer resembles the test set; we did not test this further.</li>
+  <li>Caveat: one run per strategy. The gap is consistent across all four rounds, but its exact size is uncertain.</li>
+</ul>
+<figure><img src="../../figures/final/fig_active_learning.png" style="width:74%">
+<figcaption>Test error vs number of labelled samples. Solid: 3-model ensemble; dashed: average single model. Purple: uncertainty selection; grey: random. File: <code>figures/final/fig_active_learning.png</code></figcaption></figure>
+<div class="box neg"><b class="h">How to say it</b>Naive "pick the most uncertain" active learning did not help here: random choice was 4–6% better. This fits Stage 3: the spread is informative but miscalibrated, and greedily picking the most uncertain samples skews the training set.</div>
+
+<h3 class="break">Stage 4: Our own solver reproduces the dataset</h3>
+<p>We wrote a fast GPU solver (<code>solver/ns2d.py</code>, pseudo-spectral method). Started from still fluid with x as the forcing, it reproduces the dataset's y on 50 test samples with mean error <b>0.0027%</b> (worst 0.02%). Wrong guesses fail clearly: viscosity 1/1000 gives 2% error; swapped axes give 86%. This confirmed what x and y are, and gave us a solver for the speed comparison.</p>
+<figure><img src="../../figures/stage4_examples.png" style="width:100%">
+<figcaption>Two test samples: forcing x, dataset y, our solver's result, and the difference (note the tiny colour scale of the difference). File: <code>figures/stage4_examples.png</code></figcaption></figure>
+
+<h3>Stage 5: Is the surrogate faster than the solver?</h3>
+<p>We timed our solver at several grid sizes (coarser grid = faster but less accurate) and the trained networks on the same GPU, with a careful timing protocol (warm-up, synchronisation, repeats, best of batch sizes 1/32/256).</p>
+<table>
+  <tr><th>Method</th><th class="n">Time per sample</th><th class="n">Error vs dataset</th></tr>
+  <tr><td>Solver, 32 × 32 grid</td><td class="n">0.30 ms</td><td class="n">0.033</td></tr>
+  <tr><td>Solver, 48 × 48 grid</td><td class="n">0.46 ms</td><td class="n">0.009</td></tr>
+  <tr><td>U-Net</td><td class="n">2.9 ms</td><td class="n">0.052–0.056</td></tr>
+  <tr><td><b>FNO</b></td><td class="n"><b>3.5 ms</b></td><td class="n"><b>0.036</b></td></tr>
+  <tr><td>Solver, 128 × 128 grid (full accuracy)</td><td class="n">15.5 ms</td><td class="n">0.00004</td></tr>
+</table>
+<ul>
+  <li><b>At equal accuracy the FNO is slower</b>: a coarse 32 × 32 solve is already more accurate (0.033 vs 0.036) and about <b>12× faster</b>.</li>
+  <li>The FNO is only faster (4.4×) than the full-accuracy 128 × 128 solve, and it would need ~145,000 predictions before that saving repays the cost of generating its training data and training it.</li>
+</ul>
+<figure><img src="../../figures/final/fig_speed_accuracy.png" style="width:72%">
+<figcaption>Speed vs accuracy (both log scale). The purple line is our solver at different grid sizes; lower-left is better. The networks sit above and to the right of the solver line. File: <code>figures/final/fig_speed_accuracy.png</code></figcaption></figure>
+<div class="slide">Surrogates are often presented as "much faster than the solver". Compared fairly, at the same accuracy, our FNO is about 12× slower than a coarse solver run. It only wins against a needlessly fine solver, and needs ~145k uses to pay back its training.</div>
+
+<!-- ======================================================= -->
+<h2 class="break">5. Limitations (say these honestly on a slide)</h2>
+<ul>
+  <li><b>One model, one dataset, one GPU type.</b> Results are for the FNO on this 2-D benchmark on a Tesla T4.</li>
+  <li><b>20 epochs.</b> The low-rank runs were still improving; longer training might narrow the accuracy gap.</li>
+  <li><b>Seeds:</b> 3 seeds per optimizer; only 1 seed per U-Net loss and 1 run per active-learning strategy.</li>
+  <li><b>Optimizer memory is small for this model</b>, so total GPU savings are ~2%. The method would matter more for models where the optimizer state dominates (large weights, small activations).</li>
+  <li><b>Active learning</b> was tested only in its simplest form (pick the top-500 most uncertain). Variants that mix in random samples or encourage diversity were not tried.</li>
+  <li><b>Not done:</b> multi-step rollout (predicting the flow step by step over time). It needs a new time-series dataset from our own solver.</li>
+</ul>
+
+<h2>6. Suggested slide outline (about 15 slides)</h2>
+<table>
+  <tr><th>#</th><th>Slide</th><th>Use</th></tr>
+  <tr><td>1</td><td>Title, team</td><td></td></tr>
+  <tr><td>2</td><td>Motivation: solvers are slow; surrogates; we want uncertainty → ensembles → memory problem</td><td>Section "one minute"</td></tr>
+  <tr><td>3</td><td>Objective and the five questions</td><td>Objective table</td></tr>
+  <tr><td>4</td><td>Data: forcing → vorticity at T = 5</td><td><code>data_samples.png</code></td></tr>
+  <tr><td>5</td><td>Models: FNO and U-Net (one line each)</td><td>Key ideas</td></tr>
+  <tr><td>6</td><td>Low-rank Adam / GaLore and our adaptive rank (diagram: G → Pᵀ G → small state)</td><td>Key ideas</td></tr>
+  <tr><td>7</td><td>Gradients are low rank (motivation)</td><td><code>gradient_rank_per_layer.png</code></td></tr>
+  <tr><td>8</td><td>Baselines</td><td>Stage 1 table</td></tr>
+  <tr><td>9</td><td>Main result: accuracy vs optimizer memory</td><td><code>fig_accuracy_vs_state.png</code> + table</td></tr>
+  <tr><td>10</td><td>What the adaptive rank did; why it doesn't win</td><td><code>fig_adaptive_rank.png</code></td></tr>
+  <tr><td>11</td><td>Ensembles: accuracy gain and uncertainty</td><td><code>fig_spread_error.png</code></td></tr>
+  <tr><td>12</td><td>Active learning: uncertainty vs random</td><td><code>fig_active_learning.png</code></td></tr>
+  <tr><td>13</td><td>Our solver reproduces the dataset</td><td><code>stage4_examples.png</code></td></tr>
+  <tr><td>14</td><td>Surrogate vs solver speed</td><td><code>fig_speed_accuracy.png</code></td></tr>
+  <tr><td>15</td><td>Conclusions, limitations, future work</td><td>Five results + Section 5</td></tr>
+</table>
+
+<div class="keep">
+<h2>7. Where everything is</h2>
+<table>
+  <tr><th>What</th><th>Path in the repository</th></tr>
+  <tr><td>Main notebook (everything in one place)</td><td><code>navier-stokes.ipynb</code></td></tr>
+  <tr><td>One notebook per stage</td><td><code>notebooks/stage*.ipynb</code></td></tr>
+  <tr><td>All numbers in one table (102 rows, with units and sources)</td><td><code>results/FINAL.csv</code></td></tr>
+  <tr><td>Slide-ready figures (PNG and PDF)</td><td><code>figures/final/</code>, plus <code>figures/data_samples.png</code>, <code>figures/gradient_rank_per_layer.png</code>, <code>figures/stage4_examples.png</code></td></tr>
+  <tr><td>Written report (LaTeX)</td><td><code>report/report.tex</code></td></tr>
+  <tr><td>Optimizer and solver code</td><td><code>optim/lowrank_adam.py</code>, <code>solver/ns2d.py</code></td></tr>
+</table>
+</div>
+
+<h3>Numbers cheat sheet</h3>
+<table>
+  <tr><th>Quantity</th><th class="n">Value</th></tr>
+  <tr><td>FNO + Adam test error (3 seeds)</td><td class="n">0.0364 ± 0.0019</td></tr>
+  <tr><td>Adam optimizer state / FNO weights</td><td class="n">38.2 MB / 19.1 MB</td></tr>
+  <tr><td>Optimizer memory reduction (low-rank)</td><td class="n">4–14×</td></tr>
+  <tr><td>Accuracy cost of that reduction</td><td class="n">+6% to +28% error</td></tr>
+  <tr><td>Change in peak GPU memory</td><td class="n">~2% (≈ 4.0 GB peak)</td></tr>
+  <tr><td>Ensemble (K = 3) accuracy gain</td><td class="n">14–16%</td></tr>
+  <tr><td>Best ensemble error (Adam)</td><td class="n">0.0310</td></tr>
+  <tr><td>Spread / actual error</td><td class="n">0.70–0.78</td></tr>
+  <tr><td>Active learning vs random</td><td class="n">4–6% worse</td></tr>
+  <tr><td>Our solver vs dataset (50 test samples)</td><td class="n">2.7 × 10⁻⁵ mean error</td></tr>
+  <tr><td>FNO time per sample vs 32 × 32 solver</td><td class="n">3.5 ms vs 0.30 ms</td></tr>
+  <tr><td>Predictions needed to repay FNO training</td><td class="n">≈ 145,000</td></tr>
+</table>
+
+</body>
+</html>
