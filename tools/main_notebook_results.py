@@ -29,6 +29,7 @@ and need no GPU. Run them from the repository root.
 | 3 | $K=3$ ensembles from saved test predictions | `stage3_ensembles` | local CPU |
 | 4 | our solver against the dataset | `stage4_solver_validation` | local CPU |
 | 5 | solver cost-accuracy frontier vs surrogate inference time | `stage5_timing` | Kaggle T4 |
+| 7 | active learning: uncertainty vs random selection | `stage7_al_uncertainty`, `stage7_al_random` | Kaggle T4 |
 
 Unless stated otherwise, accuracy is relative $L_2$ error on the 2,000 test samples, in raw units.
 """),
@@ -201,6 +202,35 @@ best[["what", "precision", "batch", "ms_per_sample", "test_rel_L2_mean"]].round(
   that is already more accurate (0.0326) takes 0.30 ms. That is about 12× faster than the FNO.
 - **Against the high-accuracy solve it is.** The FNO is 4.4× faster than a $128^2$ solve, but needs about 145,000
   queries to repay its training time.
+"""),
+
+    # ---------------------------------------------------------------- Stage 7
+    ("md", "## Stage 7: Active Learning"),
+    ("md", r"""
+Can the ensemble's disagreement choose which samples to label next? Both runs start from the same 1,000 random
+training samples and add 500 per round up to 3,000. Each round retrains a $K=3$ FNO ensemble from scratch
+(low-rank Adam $r=16$, seeds 0–2, 20 epochs). **Uncertainty** selection adds the 500 pool samples with the
+largest member spread; **random** selection adds 500 at random. The 8,000 training samples already have labels,
+so "running a simulation" means revealing a label. One run per strategy.
+"""),
+    ("code", '''
+al = pd.concat([pd.read_csv(RES / f"stage7_{s}.csv") for s in ("uncertainty", "random")], ignore_index=True)
+w = al.pivot(index="n_labelled", columns="strategy", values="ensemble_test_rel_L2")
+w.assign(**{"uncertainty vs random (%)": 100 * (w.uncertainty / w.random - 1)}).round({"random": 4, "uncertainty": 4, "uncertainty vs random (%)": 1})
+'''),
+    ("md", "Per round: mean member error, how well spread ranks the test error, and the spread of the chosen samples vs the pool:"),
+    ("code", '''
+al.round(4)[["strategy", "n_labelled", "member_test_rel_L2_mean", "spearman_spread_error_test", "pool_spread_mean",
+    "chosen_spread_mean", "round_minutes"]]
+'''),
+    ("code", 'show_fig("final/fig_active_learning.png", width=600)'),
+    ("md", r"""
+- **Uncertainty selection was worse than random at every round**, by 4.1–6.2% in ensemble test error. At 3,000
+  samples it reached 0.0517, against 0.0497 for random.
+- **The selection worked as designed.** The chosen samples had 1.3–1.7× the mean spread of the pool.
+- **Spread stopped tracking the error.** After training on high-spread samples, the rank correlation between
+  spread and test error fell from 0.56 to 0.19–0.26. With random selection it stayed at 0.64–0.65.
+- **One run per strategy.** The sign of the gap is the same in all four rounds, but its size is uncertain.
 """),
 
     # ---------------------------------------------------------------- combined

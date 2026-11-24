@@ -327,5 +327,21 @@ M = {
     "BandMidMSE": f"{bands.iloc[0,2]:.3f}", "BandMidKtwo": f"{bands.iloc[1,2]:.3f}",
     "BandHighMSE": f"{bands.iloc[0,3]:.1f}", "BandHighKtwo": f"{bands.iloc[1,3]:.1f}",
 }
+if al is not None:
+    w = al.pivot(index="n_labelled", columns="strategy", values="ensemble_test_rel_L2")
+    later = w.iloc[1:]                                         # after the shared first round
+    gap = 100 * (later["uncertainty"] / later["random"] - 1)
+    sp = al.pivot(index="n_labelled", columns="strategy", values="spearman_spread_error_test").iloc[1:]
+    ch = al[al.strategy == "uncertainty"].dropna(subset=["chosen_spread_mean"])
+    ratio = ch.chosen_spread_mean / ch.pool_spread_mean
+    M.update({
+        "ALgapLo": f"{gap.min():.1f}", "ALgapHi": f"{gap.max():.1f}",
+        "ALstart": f"{w.iloc[0]['random']:.4f}", "ALnMax": f"{w.index.max():,}", "ALnMin": f"{w.index.min():,}",
+        "ALrandEnd": f"{w.iloc[-1]['random']:.4f}", "ALuncEnd": f"{w.iloc[-1]['uncertainty']:.4f}",
+        "ALspearStart": f"{al[al.n_labelled == w.index.min()].spearman_spread_error_test.mean():.2f}",
+        "ALspearUncLo": f"{sp['uncertainty'].min():.2f}", "ALspearUncHi": f"{sp['uncertainty'].max():.2f}",
+        "ALspearRandLo": f"{sp['random'].min():.2f}", "ALspearRandHi": f"{sp['random'].max():.2f}",
+        "ALchosenLo": f"{ratio.min():.1f}", "ALchosenHi": f"{ratio.max():.1f}",
+    })
 (G / "numbers.tex").write_text("\n".join(f"\\newcommand{{\\{k}}}{{{v}}}" for k, v in M.items()) + "\n")
 print(be.to_string(float_format="%.4g"))

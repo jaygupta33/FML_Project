@@ -32,6 +32,8 @@ Low-rank optimizers cut FNO optimizer state from \AdamState\,MB to 2.6--9.9\,MB 
 Adaptive rank lies on the same accuracy--memory curve as fixed rank and, once its \emph{peak} state during training
 is counted, does not beat it. Three-member ensembles reduce error by \EnsGainLo--\EnsGainHi\% for every optimizer,
 and member disagreement ranks test samples by error (Spearman \SpearLo--\SpearHi) but underestimates it.
+Using that disagreement to choose new training samples (active learning) gave \ALgapLo--\ALgapHi\% \emph{higher}
+test error than random selection at every round.
 We also wrote a pseudo-spectral solver that reproduces the dataset to a relative error of \SolverMean{}; on the same
 GPU, a coarse $32^2$ solve matches the FNO's accuracy about \SolThirtyTwoSpeed$\times$ faster, so the surrogate offers no
 speedup at matched accuracy for this problem.
@@ -126,6 +128,14 @@ original training run found that the four spectral-weight gradients reach 95\% o
 $K=3$ FNOs per optimizer (seeds 0--2). The prediction is the member mean; uncertainty is the per-sample member
 spread (standard deviation) relative to the target norm.
 
+\subsection{Active learning}\label{sec:almethod}
+Pool-based, on the 8{,}000 training samples (their labels exist, so ``running a simulation'' means revealing one).
+Both strategies start from the same \ALnMin{} random samples and add 500 per round up to \ALnMax. Each round
+retrains a $K=3$ FNO ensemble from scratch (GaLore $r{=}16$, seeds 0--2, 20 epochs, fixed 2{,}000-sample
+validation set). \emph{Uncertainty} selection adds the 500 pool samples with the largest member spread
+$\sqrt{\operatorname{mean}_\text{pixels}\operatorname{Var}_k \hat y_k}$; \emph{random} selection adds 500 at random.
+Everything else is identical; one run per strategy.
+
 \subsection{Reference solver}\label{sec:solver}
 Batched pseudo-spectral solver in PyTorch (CPU or GPU): exact spectral derivatives, 2/3-rule de-aliasing,
 Crank--Nicolson diffusion with Heun's method for advection and forcing. Ten unit tests check exact
@@ -182,7 +192,7 @@ of training and the bar extends to the peak state during training.}
 
 Table~\ref{tab:opt} and Fig.~\ref{fig:pareto} give the main result.
 \begin{itemize}\itemsep2pt
-\item \textbf{State memory falls 4--15$\times$, peak GPU memory by about 2\%.} Adam keeps \AdamState\,MB of state;
+\item \textbf{State memory falls 4--14$\times$, peak GPU memory by about 2\%.} Adam keeps \AdamState\,MB of state;
 GaLore $r{=}16$ keeps \RsixteenState\,MB and $r{=}4$ \RfourState\,MB. Peak GPU memory drops only from
 \AdamPeakGPU{} to \PeakGPUlow--\PeakGPUhigh\,MB, because activations at batch 32 dominate it. Time per epoch is
 unchanged (the projection costs little).
@@ -195,7 +205,7 @@ highest early in training (Fig.~\ref{fig:rank}), so its peak state is \AdaHiPeak
 memory must be available at the peak, this is the relevant number. Adaptive $\tau{=}0.99$ against $r{=}4$
 (\AdaLoRel{} vs \RfourRel) is within about one standard deviation. Adaptive rank lies on the same
 accuracy--memory curve as fixed rank.
-\item \textbf{The rank needed changes over training.} At $\tau{=}0.999$ the mean rank rises from 4 to about 19 in
+\item \textbf{The rank needed changes over training.} At $\tau{=}0.999$ the mean rank rises from about 6 at the start to about 19 in
 the first two epochs and then falls to about 10 by epoch 20 (Fig.~\ref{fig:rank}). The early peak is what sets the
 memory budget.
 \end{itemize}
@@ -232,6 +242,31 @@ ensembles cheaper to hold.
 \label{fig:spread}
 \end{figure}
 
+\subsection{Active learning}
+\begin{table}[h]
+\centering\small\input{generated/tab_active.tex}
+\caption{Ensemble test error ($K{=}3$, relative $L^2$) against the number of labelled samples. Change: uncertainty
+relative to random; positive means worse. One run per strategy.}
+\label{tab:al}
+\end{table}
+Selecting by ensemble spread did not help (Table~\ref{tab:al}, Fig.~\ref{fig:al}). After the shared first round
+(\ALstart), uncertainty selection is \ALgapLo--\ALgapHi\% worse than random at every round and ends at \ALuncEnd{}
+against \ALrandEnd. The selection did what it was designed to do: the chosen samples had \ALchosenLo--\ALchosenHi$\times$
+the mean spread of the pool. But after training on them, spread stopped tracking test error: its rank correlation
+with the error fell from \ALspearStart{} to \ALspearUncLo--\ALspearUncHi, while it stayed at
+\ALspearRandLo--\ALspearRandHi{} with random selection. A plausible reading, not tested further, is that greedy
+top-spread selection draws unrepresentative samples and so shifts the training set away from the test distribution;
+it is consistent with the miscalibrated spread in Table~\ref{tab:ens}. With one run per strategy the size of the gap
+is uncertain, but its sign is the same in all four rounds.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.62\linewidth]{fig_active_learning.pdf}
+\caption{Test error against labelled training samples for uncertainty and random selection. Solid: ensemble;
+dashed: mean member.}
+\label{fig:al}
+\end{figure}
+
 \subsection{Surrogate against the solver}
 \begin{table}[t]
 \centering\small\input{generated/tab_speed.tex}
@@ -266,16 +301,18 @@ scale; the low-rank results may improve with tuning.
 \item 20 epochs; the low-rank runs were still improving. Three seeds per optimizer; one seed per U-Net loss.
 \item Memory: at this model size and batch, activations dominate peak memory. Larger models, smaller batches or
 activation checkpointing would make optimizer state a larger share; we did not test them.
-\item Ensembles of $K=3$ only. Planned active learning and multi-step rollout were not run within the time budget.
+\item Ensembles of $K=3$ only. Active learning was tested in its simplest form (greedy top-spread batches, one run
+per strategy); batch-diversity or calibrated variants were not tried. Multi-step rollout was not run.
 \item Timings are for one GPU type (T4) and float32; the FNO was not tried in lower precision.
 \item The gradient-rank study comes from a single earlier training run.
 \end{itemize}
 
 \section{Conclusion}
-A complex-aware low-rank Adam reduces FNO optimizer state 4--15$\times$ at a 6--28\% accuracy cost, and three such
+A complex-aware low-rank Adam reduces FNO optimizer state 4--14$\times$ at a 6--28\% accuracy cost, and three such
 models can be held for less optimizer state than one Adam model. An energy-threshold adaptive rank finds sensible,
 layer-dependent ranks, but it reaches its largest rank early in training and, measured by peak memory, does no
-better than a fixed rank. For this dataset the surrogate is also not faster than a coarse solve of equal accuracy.
+better than a fixed rank. Ensemble spread ranks samples by difficulty but is too small, and choosing training data greedily by it was worse
+than random choice. For this dataset the surrogate is also not faster than a coarse solve of equal accuracy.
 These are null results, and they point to where adaptivity could help: a rank budget that bounds the early peak,
 and problems where the optimizer state, not the activations, limits memory.
 
@@ -300,7 +337,7 @@ Kolmogorov flow. J.\ Fluid Mech.\ 722, 2013.
 \section{Reproducing}
 Code: \texttt{nsbench/} (models, trainer, data), \texttt{optim/} (low-rank Adam), \texttt{solver/}; tests in
 \texttt{tests/} (\texttt{python -m pytest tests}). One notebook per stage in \texttt{notebooks/}, built by
-\texttt{tools/stage*\_notebooks.py}; GPU stages ran on Kaggle (Tesla T4), Stages 3--4 locally on CPU.
+\texttt{tools/stage*\_notebooks.py}; GPU stages (1, 2, 5, 7) ran on Kaggle (Tesla T4), Stages 3--4 locally on CPU.
 \texttt{tools/make\_final.py} rebuilds \texttt{results/FINAL.csv}, all report figures and every number in this
 report from the stage CSVs.
 \end{document}
