@@ -9,3 +9,8 @@ __pycache__/
 .venv/
 kaggle/code/
 kaggle_out/*/preds/
+
+# kept local only (not published)
+HANDOFF.md
+midsem_update/
+.claude/
