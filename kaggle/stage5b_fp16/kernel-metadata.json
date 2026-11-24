@@ -1,0 +1,17 @@
+{
+  "id": "jaygupta33/ns-stage5b-fp16",
+  "title": "NS Stage5b fp16",
+  "code_file": "stage5b_fp16.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": [
+    "jaygupta33/ns-surrogate-code"
+  ],
+  "kernel_sources": [
+    "jaygupta33/ns-data"
+  ],
+  "competition_sources": []
+}
