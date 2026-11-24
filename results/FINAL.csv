@@ -81,3 +81,23 @@ stage,item,metric,value,unit,n_seeds,source
 5 timing,solver 64^2 (float32),test rel L2 vs dataset (64 samples),0.002292376194686323,,1.0,stage5_timing.csv
 5 timing,solver 96^2 (float32),"time per sample, best batch size, Tesla T4",5.767775874999437,ms,1.0,stage5_timing.csv
 5 timing,solver 96^2 (float32),test rel L2 vs dataset (64 samples),0.0003000903014111371,,1.0,stage5_timing.csv
+7 active learning,"uncertainty selection, n=1000","ensemble test rel L2 (K=3, GaLore r=16)",0.09226248413324356,,3.0,stage7_uncertainty.csv
+7 active learning,"uncertainty selection, n=1000",mean member test rel L2,0.10418447852134705,,3.0,stage7_uncertainty.csv
+7 active learning,"uncertainty selection, n=1500","ensemble test rel L2 (K=3, GaLore r=16)",0.07709486782550812,,3.0,stage7_uncertainty.csv
+7 active learning,"uncertainty selection, n=1500",mean member test rel L2,0.08635458101828893,,3.0,stage7_uncertainty.csv
+7 active learning,"uncertainty selection, n=2000","ensemble test rel L2 (K=3, GaLore r=16)",0.0644570142030716,,3.0,stage7_uncertainty.csv
+7 active learning,"uncertainty selection, n=2000",mean member test rel L2,0.0738116626938184,,3.0,stage7_uncertainty.csv
+7 active learning,"uncertainty selection, n=2500","ensemble test rel L2 (K=3, GaLore r=16)",0.05774415656924248,,3.0,stage7_uncertainty.csv
+7 active learning,"uncertainty selection, n=2500",mean member test rel L2,0.06624606251716614,,3.0,stage7_uncertainty.csv
+7 active learning,"uncertainty selection, n=3000","ensemble test rel L2 (K=3, GaLore r=16)",0.05171111598610878,,3.0,stage7_uncertainty.csv
+7 active learning,"uncertainty selection, n=3000",mean member test rel L2,0.05961530407269796,,3.0,stage7_uncertainty.csv
+7 active learning,"random selection, n=1000","ensemble test rel L2 (K=3, GaLore r=16)",0.0922510027885437,,3.0,stage7_random.csv
+7 active learning,"random selection, n=1000",mean member test rel L2,0.10416632145643234,,3.0,stage7_random.csv
+7 active learning,"random selection, n=1500","ensemble test rel L2 (K=3, GaLore r=16)",0.07258149236440659,,3.0,stage7_random.csv
+7 active learning,"random selection, n=1500",mean member test rel L2,0.08217581858237584,,3.0,stage7_random.csv
+7 active learning,"random selection, n=2000","ensemble test rel L2 (K=3, GaLore r=16)",0.060674771666526794,,3.0,stage7_random.csv
+7 active learning,"random selection, n=2000",mean member test rel L2,0.06977057953675588,,3.0,stage7_random.csv
+7 active learning,"random selection, n=2500","ensemble test rel L2 (K=3, GaLore r=16)",0.055444519966840744,,3.0,stage7_random.csv
+7 active learning,"random selection, n=2500",mean member test rel L2,0.06463293482859929,,3.0,stage7_random.csv
+7 active learning,"random selection, n=3000","ensemble test rel L2 (K=3, GaLore r=16)",0.049686964601278305,,3.0,stage7_random.csv
+7 active learning,"random selection, n=3000",mean member test rel L2,0.057273351897796,,3.0,stage7_random.csv

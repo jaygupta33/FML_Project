@@ -213,6 +213,8 @@ if al is not None:
                 alpha=0.7, label=f"{lab}, mean member")
     ax.set(xlabel="labelled training samples", ylabel="test relative $L^2$", yscale="log")
     ax.set_xticks(sorted(al.n_labelled.unique()))
+    ax.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter("%.2f"))
+    ax.yaxis.set_minor_formatter(matplotlib.ticker.FormatStrFormatter("%.2f"))
     ax.legend(fontsize=7.5)
     fig.tight_layout(); fig.savefig(F / "fig_active_learning.pdf"); fig.savefig(F / "fig_active_learning.png"); plt.close(fig)
 print("figures written to", F)
